@@ -47,50 +47,18 @@ border-radius:5px;
 cursor:pointer;
 }
 
-/* floating menu */
-.float-menu{
+/* tombol whatsapp */
+.wa-float{
 position:fixed;
 bottom:20px;
 right:20px;
-display:flex;
-flex-direction:column;
-gap:10px;
-z-index:999;
-}
-
-.float-btn{
-width:55px;
-height:55px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-size:22px;
-text-decoration:none;
-animation:float 2s infinite;
-}
-
-.wa-btn{
 background:#25D366;
-}
-
-.tel-btn{
-background:#0f8a4a;
-}
-
-.menu-toggle{
-background:#333;
-}
-
-@keyframes float{
-0%{transform:translateY(0px)}
-50%{transform:translateY(-8px)}
-100%{transform:translateY(0px)}
-}
-
-.hidden{
-display:none;
+color:white;
+padding:15px 18px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+z-index:999;
 }
 
 /* tombol install */
@@ -184,126 +152,6 @@ deferredPrompt.prompt();
 if('serviceWorker' in navigator){
 
 navigator.serviceWorker.register('sw.js');
-
-}
-
-</script>
-
-
-
-
-
-<div class="container">
-<div class="card">
-<h2>Pendaftaran Online</h2>
-
-<input type="text" id="namaDaftar" placeholder="Nama Lengkap"><br><br>
-<input type="text" id="alamatDaftar" placeholder="Alamat"><br><br>
-<input type="text" id="hpDaftar" placeholder="Nomor WhatsApp"><br><br>
-
-<select id="kursusDaftar">
-<option value="Microsoft Office">Microsoft Office</option>
-<option value="Google Workspace">Google Workspace</option>
-<option value="Desain Grafis">Desain Grafis</option>
-</select>
-<br><br>
-
-<button class="btn" onclick="daftarOnline()">Daftar Sekarang</button>
-
-<p id="statusDaftar"></p>
-
-</div>
-</div>
-
-<script>
-
-function daftarOnline(){
-
-var nama=document.getElementById('namaDaftar').value;
-var alamat=document.getElementById('alamatDaftar').value;
-var hp=document.getElementById('hpDaftar').value;
-var kursus=document.getElementById('kursusDaftar').value;
-
-var pesan="Pendaftaran Kursus GRIYA INSAN MADANI%0A%0A"
-+"Nama: "+nama+"%0A"
-+"Alamat: "+alamat+"%0A"
-+"No HP: "+hp+"%0A"
-+"Kursus: "+kursus;
-
-window.open("https://wa.me/628117677050?text="+pesan);
-
-
-document.getElementById('statusDaftar').innerHTML="Pendaftaran berhasil, silakan kirim WhatsApp";
-
-}
-
-</script>
-
-
-
-<div class="container">
-<div class="card">
-<h2>Upload Bukti Pembayaran</h2>
-
-<input type="text" id="namaBayar" placeholder="Nama Peserta"><br><br>
-<input type="file" id="buktiBayar"><br><br>
-
-<button class="btn" onclick="uploadBayar()">Upload Bukti</button>
-
-<div id="previewBayar"></div>
-
-</div>
-</div>
-
-<script>
-
-function uploadBayar(){
-
-var nama=document.getElementById('namaBayar').value;
-var file=document.getElementById('buktiBayar').files[0];
-
-var reader=new FileReader();
-
-reader.onload=function(e){
-
-var img=document.createElement('img');
-img.src=e.target.result;
-img.style.width='200px';
-img.style.marginTop='10px';
-
-var div=document.getElementById('previewBayar');
-
-div.innerHTML='<p>Bukti Pembayaran: '+nama+'</p>';
-
-div.appendChild(img);
-
-var pesan="Upload Bukti Pembayaran%0A%0A"+"Nama: "+nama;
-
-window.open("https://wa.me/628117677050?text="+pesan);
-
-}
-
-if(file){
-reader.readAsDataURL(file);
-}
-
-}
-
-</script>
-
-<div class="float-menu">
-<a href="tel:+628117677050" class="float-btn tel-btn hidden" id="telBtn">📞</a>
-<a href="https://wa.me/628117677050" class="float-btn wa-btn hidden" id="waBtn">💬</a>
-<div class="float-btn menu-toggle" onclick="toggleMenu()">☰</div>
-</div>
-
-<script>
-
-function toggleMenu(){
-
-document.getElementById('waBtn').classList.toggle('hidden');
-
-document.getElementById('telBtn').classList.toggle('hidden');
 
 }
 
