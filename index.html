@@ -14,7 +14,6 @@ body{
 font-family:Arial, sans-serif;
 margin:0;
 padding:0;
-background:#f5f5f5;
 }
 
 header{
@@ -33,11 +32,10 @@ padding:20px;
 }
 
 .card{
-background:white;
-padding:20px;
+border:1px solid #ddd;
+padding:15px;
 border-radius:10px;
 margin-bottom:20px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
 .btn{
@@ -50,7 +48,6 @@ cursor:pointer;
 }
 
 /* floating menu */
-
 .float-menu{
 position:fixed;
 bottom:20px;
@@ -86,27 +83,28 @@ background:#0f8a4a;
 background:#333;
 }
 
-.hidden{
-display:none;
-}
-
 @keyframes float{
 0%{transform:translateY(0px)}
 50%{transform:translateY(-8px)}
 100%{transform:translateY(0px)}
 }
 
-/* tombol install */
+.hidden{
+display:none;
+}
 
+/* tombol install */
 .install-btn{
 position:fixed;
 bottom:20px;
 left:20px;
 background:#0f8a4a;
 color:white;
-padding:15px;
+padding:15px 18px;
 border-radius:50px;
+cursor:pointer;
 display:none;
+z-index:999;
 }
 
 </style>
@@ -124,62 +122,174 @@ display:none;
 <div class="container">
 
 <div class="card">
-<h2>Pendaftaran Online</h2>
-
-<input type="text" id="namaDaftar" placeholder="Nama"><br><br>
-<input type="text" id="alamatDaftar" placeholder="Alamat"><br><br>
-<input type="text" id="hpDaftar" placeholder="WhatsApp"><br><br>
-
-<button class="btn" onclick="daftar()">Daftar</button>
-
+<h2>Jadwal Kursus</h2>
+<p>Senin, Selasa, Rabu</p>
+<p>Siang: 14.00 - 16.00 WIB</p>
+<p>Malam: 19.30 - 21.30 WIB</p>
 </div>
 
 <div class="card">
+<h2>Daftar Peserta</h2>
+<input type="text" id="nama" placeholder="Nama Peserta">
+<br><br>
+<button class="btn" onclick="tambahPeserta()">Tambah</button>
+<ul id="list"></ul>
+</div>
+
+</div>
+
+<!-- tombol whatsapp -->
+<a href="https://wa.me/628117677050" class="wa-float">
+WhatsApp
+</a>
+
+<!-- tombol install -->
+<button id="installBtn" class="install-btn">
+Install App
+</button>
+
+<script>
+
+function tambahPeserta(){
+var nama=document.getElementById('nama').value;
+var li=document.createElement('li');
+li.textContent=nama;
+document.getElementById('list').appendChild(li);
+}
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e)=>{
+
+e.preventDefault();
+
+deferredPrompt=e;
+
+document.getElementById('installBtn').style.display='block';
+
+});
+
+
+document.getElementById('installBtn').addEventListener('click',()=>{
+
+if(deferredPrompt){
+
+deferredPrompt.prompt();
+
+}
+
+});
+
+
+if('serviceWorker' in navigator){
+
+navigator.serviceWorker.register('sw.js');
+
+}
+
+</script>
+
+
+
+
+
+<div class="container">
+<div class="card">
+<h2>Pendaftaran Online</h2>
+
+<input type="text" id="namaDaftar" placeholder="Nama Lengkap"><br><br>
+<input type="text" id="alamatDaftar" placeholder="Alamat"><br><br>
+<input type="text" id="hpDaftar" placeholder="Nomor WhatsApp"><br><br>
+
+<select id="kursusDaftar">
+<option value="Microsoft Office">Microsoft Office</option>
+<option value="Google Workspace">Google Workspace</option>
+<option value="Desain Grafis">Desain Grafis</option>
+</select>
+<br><br>
+
+<button class="btn" onclick="daftarOnline()">Daftar Sekarang</button>
+
+<p id="statusDaftar"></p>
+
+</div>
+</div>
+
+<script>
+
+function daftarOnline(){
+
+var nama=document.getElementById('namaDaftar').value;
+var alamat=document.getElementById('alamatDaftar').value;
+var hp=document.getElementById('hpDaftar').value;
+var kursus=document.getElementById('kursusDaftar').value;
+
+var pesan="Pendaftaran Kursus GRIYA INSAN MADANI%0A%0A"
++"Nama: "+nama+"%0A"
++"Alamat: "+alamat+"%0A"
++"No HP: "+hp+"%0A"
++"Kursus: "+kursus;
+
+window.open("https://wa.me/628117677050?text="+pesan);
+
+
+document.getElementById('statusDaftar').innerHTML="Pendaftaran berhasil, silakan kirim WhatsApp";
+
+}
+
+</script>
+
+
+
+<div class="container">
+<div class="card">
 <h2>Upload Bukti Pembayaran</h2>
 
-<input type="text" id="namaBayar" placeholder="Nama"><br><br>
+<input type="text" id="namaBayar" placeholder="Nama Peserta"><br><br>
 <input type="file" id="buktiBayar"><br><br>
 
-<button class="btn" onclick="uploadBayar()">Upload</button>
+<button class="btn" onclick="uploadBayar()">Upload Bukti</button>
 
 <div id="previewBayar"></div>
 
 </div>
-
-<div class="card">
-<h2>Dashboard Admin</h2>
-
-<input type="password" id="adminPass" placeholder="Password">
-<button class="btn" onclick="login()">Login</button>
-
-<div id="adminArea" style="display:none">
-
-<h3>Data Peserta</h3>
-
-<input type="text" id="pesertaBaru">
-<button class="btn" onclick="tambah()">Tambah</button>
-
-<ul id="dataPeserta"></ul>
-
 </div>
 
-</div>
+<script>
 
-<div class="card">
-<h2>Absensi Peserta</h2>
+function uploadBayar(){
 
-<input type="text" id="absenNama">
-<button class="btn" onclick="absen()">Absen</button>
+var nama=document.getElementById('namaBayar').value;
+var file=document.getElementById('buktiBayar').files[0];
 
-<ul id="listAbsen"></ul>
+var reader=new FileReader();
 
-</div>
+reader.onload=function(e){
 
-</div>
+var img=document.createElement('img');
+img.src=e.target.result;
+img.style.width='200px';
+img.style.marginTop='10px';
 
-<button id="installBtn" class="install-btn">
-Install App
-</button>
+var div=document.getElementById('previewBayar');
+
+div.innerHTML='<p>Bukti Pembayaran: '+nama+'</p>';
+
+div.appendChild(img);
+
+var pesan="Upload Bukti Pembayaran%0A%0A"+"Nama: "+nama;
+
+window.open("https://wa.me/628117677050?text="+pesan);
+
+}
+
+if(file){
+reader.readAsDataURL(file);
+}
+
+}
+
+</script>
 
 <div class="float-menu">
 <a href="tel:+628117677050" class="float-btn tel-btn hidden" id="telBtn">📞</a>
@@ -190,142 +300,12 @@ Install App
 <script>
 
 function toggleMenu(){
-document.getElementById("waBtn").classList.toggle("hidden")
-document.getElementById("telBtn").classList.toggle("hidden")
-}
 
-function daftar(){
+document.getElementById('waBtn').classList.toggle('hidden');
 
-var nama=document.getElementById("namaDaftar").value
-
-var data=JSON.parse(localStorage.getItem("peserta"))||[]
-
-data.push(nama)
-
-localStorage.setItem("peserta",JSON.stringify(data))
-
-tampil()
+document.getElementById('telBtn').classList.toggle('hidden');
 
 }
-
-function login(){
-
-var pass=document.getElementById("adminPass").value
-
-if(pass=="admin123"){
-document.getElementById("adminArea").style.display="block"
-}
-
-}
-
-function tambah(){
-
-var nama=document.getElementById("pesertaBaru").value
-
-var data=JSON.parse(localStorage.getItem("peserta"))||[]
-
-data.push(nama)
-
-localStorage.setItem("peserta",JSON.stringify(data))
-
-tampil()
-
-}
-
-function tampil(){
-
-var data=JSON.parse(localStorage.getItem("peserta"))||[]
-
-var list=document.getElementById("dataPeserta")
-
-list.innerHTML=""
-
-data.forEach(function(item){
-
-var li=document.createElement("li")
-
-li.textContent=item
-
-list.appendChild(li)
-
-})
-
-}
-
-function absen(){
-
-var nama=document.getElementById("absenNama").value
-
-var tanggal=new Date().toLocaleDateString()
-
-var data=JSON.parse(localStorage.getItem("absen"))||[]
-
-data.push(nama+" - "+tanggal)
-
-localStorage.setItem("absen",JSON.stringify(data))
-
-tampilAbsen()
-
-}
-
-function tampilAbsen(){
-
-var data=JSON.parse(localStorage.getItem("absen"))||[]
-
-var list=document.getElementById("listAbsen")
-
-list.innerHTML=""
-
-data.forEach(function(item){
-
-var li=document.createElement("li")
-
-li.textContent=item
-
-list.appendChild(li)
-
-})
-
-}
-
-function uploadBayar(){
-
-var file=document.getElementById("buktiBayar").files[0]
-
-var reader=new FileReader()
-
-reader.onload=function(e){
-
-document.getElementById("previewBayar").innerHTML="<img src='"+e.target.result+"' width='200'>"
-
-}
-
-reader.readAsDataURL(file)
-
-}
-
-window.onload=function(){
-tampil()
-tampilAbsen()
-}
-
-let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-
-e.preventDefault();
-
-deferredPrompt = e;
-
-document.getElementById('installBtn').style.display = 'block';
-
-});
-
-document.getElementById('installBtn').addEventListener('click', () => {
-
-deferredPrompt.prompt();
-
-});
 
 </script>
 
