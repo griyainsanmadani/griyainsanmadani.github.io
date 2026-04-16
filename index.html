@@ -300,5 +300,26 @@ deferredPrompt.prompt();
 
 </script>
 
+<button class="btn" onclick="daftarWA()">
+Daftar via WhatsApp
+</button>
+
+<script>
+
+function daftarWA(){
+
+var nama=document.getElementById('nama').value;
+var program=document.getElementById('program').value;
+
+var pesan="Saya ingin daftar kursus%0A"+
+"Nama : "+nama+"%0A"+
+"Program : "+program;
+
+window.open("https://wa.me/6281266277447?text="+pesan);
+
+}
+
+</script>
+
 </body>
 </html>
