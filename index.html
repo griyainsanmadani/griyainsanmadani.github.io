@@ -95,11 +95,7 @@ text-align:center;
 padding:20px;
 }
 
-.photo{
-width:120px;
-margin-top:10px;
-border-radius:10px;
-}
+/* WhatsApp Button */
 
 .whatsapp{
 position:fixed;
@@ -117,6 +113,7 @@ text-decoration:none;
 font-size:30px;
 box-shadow:0 5px 15px rgba(0,0,0,0.3);
 animation:waAnim 2s infinite;
+z-index:999;
 }
 
 @keyframes waAnim{
@@ -125,13 +122,33 @@ animation:waAnim 2s infinite;
 100%{transform:scale(1)}
 }
 
+/* Install Button */
+
+.install-app{
+position:fixed;
+top:20px;
+right:20px;
+background:#0f8a4a;
+color:white;
+padding:10px 15px;
+border-radius:30px;
+cursor:pointer;
+display:none;
+z-index:999;
+}
+
 </style>
 
 </head>
 
 <body>
 
+<button class="install-app" id="installBtn">
+Install App
+</button>
+
 <header>
+<img src="logo.png" class="logo">
 <h1>GRIYA INSAN MADANI</h1>
 <p>Belajar Cepat, Mudah, dan Murah</p>
 </header>
@@ -148,6 +165,7 @@ animation:waAnim 2s infinite;
 <section class="hero">
 <h2>Kursus Komputer Profesional</h2>
 <p>Microsoft Office & Google Workspace</p>
+<a href="#daftar" class="btn">Daftar Sekarang</a>
 </section>
 
 <section class="container" id="programKursus">
@@ -155,12 +173,17 @@ animation:waAnim 2s infinite;
 
 <div class="card">
 <h3>Microsoft Office</h3>
-<p>Word, Excel, PowerPoint</p>
+<p>Microsoft Word</p>
+<p>Microsoft Excel</p>
+<p>Microsoft PowerPoint</p>
 </div>
 
 <div class="card">
 <h3>Google Workspace</h3>
-<p>Docs, Sheets, Slides</p>
+<p>Google Docs</p>
+<p>Google Sheets</p>
+<p>Google Slides</p>
+<p>Google Drive</p>
 </div>
 
 </section>
@@ -169,8 +192,15 @@ animation:waAnim 2s infinite;
 <h2>Biaya Kursus</h2>
 
 <div class="card">
-<p>Paket Reguler : Rp 500.000</p>
-<p>Paket Privat : Rp 500.000</p>
+<h3>Paket Reguler</h3>
+<p>Durasi: 1-3 Bulan</p>
+<p>Biaya: Rp 500.000</p>
+</div>
+
+<div class="card">
+<h3>Paket Privat</h3>
+<p>Durasi: 1-2 Bulan</p>
+<p>Biaya: Rp 500.000</p>
 </div>
 
 </section>
@@ -179,9 +209,9 @@ animation:waAnim 2s infinite;
 <h2>Jadwal Kursus</h2>
 
 <div class="card">
-<p>Senin - Rabu</p>
-<p>14.00 - 16.00</p>
-<p>19.30 - 21.30</p>
+<p>Senin, Selasa, Rabu</p>
+<p>Siang 14.00 - 16.00 WIB</p>
+<p>Malam 19.30 - 21.30 WIB</p>
 </div>
 
 </section>
@@ -189,27 +219,25 @@ animation:waAnim 2s infinite;
 <section class="container" id="daftar">
 <h2>Form Pendaftaran</h2>
 
-<input type="text" id="nama" placeholder="Nama Lengkap">
-<input type="text" id="alamat" placeholder="Alamat">
+<form onsubmit="kirimWA(); return false;">
 
-<select id="program">
-<option>Microsoft Office</option>
-<option>Google Workspace</option>
+<input type="text" id="nama" placeholder="Nama Lengkap" required>
+<input type="text" id="alamat" placeholder="Alamat" required>
+
+<select id="programForm">
+<option value="Microsoft Office">Microsoft Office</option>
+<option value="Google Workspace">Google Workspace</option>
 </select>
 
-<label>Upload Foto Peserta</label>
-<input type="file" id="foto">
+<select id="paket">
+<option>Paket Reguler</option>
+<option>Paket Privat</option>
+</select>
 
-<label>Upload Bukti Transfer</label>
-<input type="file" id="bukti">
+<button class="btn">Daftar Sekarang</button>
 
-<button class="btn" onclick="simpan()">Daftar</button>
+</form>
 
-</section>
-
-<section class="container">
-<h2>Data Peserta</h2>
-<div id="data"></div>
 </section>
 
 <section class="container" id="kontak">
@@ -218,7 +246,8 @@ animation:waAnim 2s infinite;
 <div class="card">
 <p>GRIYA INSAN MADANI</p>
 <p>RT 05 RW 01 Desa Mumpa</p>
-<p>WA : 081266277447</p>
+<p>Kec. Tempuling</p>
+<p>WhatsApp: 081266277447</p>
 </div>
 
 </section>
@@ -233,126 +262,41 @@ animation:waAnim 2s infinite;
 
 <script>
 
-function simpan(){
+function kirimWA(){
 
 var nama=document.getElementById('nama').value;
 var alamat=document.getElementById('alamat').value;
-var program=document.getElementById('program').value;
+var program=document.getElementById('programForm').value;
+var paket=document.getElementById('paket').value;
 
-var foto=document.getElementById('foto').files[0];
-var bukti=document.getElementById('bukti').files[0];
+var pesan="Pendaftaran Kursus GRIYA INSAN MADANI%0A"+
+"Nama : "+nama+"%0A"+
+"Alamat : "+alamat+"%0A"+
+"Program : "+program+"%0A"+
+"Paket : "+paket;
 
-var reader1=new FileReader();
-var reader2=new FileReader();
-
-reader1.onload=function(e){
-
-var fotoData=e.target.result;
-
-reader2.onload=function(e2){
-
-var buktiData=e2.target.result;
-
-var data={
-nama:nama,
-alamat:alamat,
-program:program,
-foto:fotoData,
-bukti:buktiData
-};
-
-var peserta=JSON.parse(localStorage.getItem('peserta'))||[];
-
-peserta.push(data);
-
-localStorage.setItem('peserta',JSON.stringify(peserta));
-
-tampil();
+window.open("https://wa.me/6281266277447?text="+pesan);
 
 }
 
-reader2.readAsDataURL(bukti);
+/* Install App */
 
-}
+let deferredPrompt;
 
-reader1.readAsDataURL(foto);
+window.addEventListener('beforeinstallprompt', (e) => {
 
-}
+e.preventDefault();
+deferredPrompt = e;
 
-function tampil(){
-
-var peserta=JSON.parse(localStorage.getItem('peserta'))||[];
-
-var html="";
-
-peserta.forEach(function(p){
-
-html+=`
-
-<div class="card">
-
-<h3>${p.nama}</h3>
-
-<img src="${p.foto}" class="photo">
-
-<br>
-
-<button class="btn" onclick="kartu('${p.nama}','${p.program}','${p.foto}')">
-Cetak Kartu Peserta
-</button>
-
-<button class="btn" onclick="sertifikat('${p.nama}')">
-Cetak Sertifikat
-</button>
-
-</div>
-
-`;
+document.getElementById('installBtn').style.display='block';
 
 });
 
-document.getElementById('data').innerHTML=html;
+document.getElementById('installBtn').addEventListener('click',()=>{
 
-}
+deferredPrompt.prompt();
 
-function kartu(nama,program,foto){
-
-var win=window.open();
-
-win.document.write(`
-
-<h2>KARTU PESERTA</h2>
-
-<img src="${foto}" width="100">
-
-<p>${nama}</p>
-<p>${program}</p>
-
-`);
-
-win.print();
-
-}
-
-function sertifikat(nama){
-
-var win=window.open();
-
-win.document.write(`
-
-<h1>SERTIFIKAT</h1>
-
-<p>Diberikan kepada</p>
-
-<h2>${nama}</h2>
-
-`);
-
-win.print();
-
-}
-
-window.onload=tampil;
+});
 
 </script>
 
