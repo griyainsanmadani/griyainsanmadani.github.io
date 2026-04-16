@@ -6,6 +6,21 @@
 <title>GRIYA INSAN MADANI</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+.photo{
+width:120px;
+border-radius:10px;
+margin-top:10px;
+}
+
+.print-btn{
+background:#d32f2f;
+color:white;
+padding:10px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+margin-top:5px;
+}
 
 <style>
 *{
@@ -14,7 +29,178 @@ padding:0;
 box-sizing:border-box;
 font-family: Arial, Helvetica, sans-serif;
 }
+<section class="container">
+<h2>Data Peserta</h2>
 
+<div class="card">
+
+<input type="text" id="pesertaNama" placeholder="Nama Peserta">
+
+<input type="text" id="pesertaProgram" placeholder="Program">
+
+<label>Upload Foto Peserta</label>
+<input type="file" id="fotoPeserta">
+
+<label>Upload Bukti Transfer</label>
+<input type="file" id="buktiTransfer">
+
+<button class="btn" onclick="simpanPeserta()">Simpan Peserta</button>
+
+<div id="previewPeserta"></div>
+
+</div>
+
+</section>
+
+
+<section class="container">
+<h2>Cetak Kartu Peserta</h2>
+
+<div class="card">
+
+<input type="text" id="cetakNama" placeholder="Nama Peserta">
+
+<button class="btn" onclick="cetakKartu()">Cetak Kartu</button>
+
+</div>
+
+</section>
+
+
+<section class="container">
+<h2>Cetak Sertifikat</h2>
+
+<div class="card">
+
+<input type="text" id="sertifikatNama" placeholder="Nama Peserta">
+
+<button class="btn" onclick="cetakSertifikat()">Cetak Sertifikat</button>
+
+</div>
+
+</section>
+<script>
+
+function simpanPeserta(){
+
+var nama=document.getElementById('pesertaNama').value;
+var program=document.getElementById('pesertaProgram').value;
+
+var foto=document.getElementById('fotoPeserta').files[0];
+var bukti=document.getElementById('buktiTransfer').files[0];
+
+var reader1=new FileReader();
+var reader2=new FileReader();
+
+reader1.onload=function(e){
+
+var fotoData=e.target.result;
+
+reader2.onload=function(e2){
+
+var buktiData=e2.target.result;
+
+var data={
+nama:nama,
+program:program,
+foto:fotoData,
+bukti:buktiData
+};
+
+var peserta=JSON.parse(localStorage.getItem('dataPeserta'))||[];
+
+peserta.push(data);
+
+localStorage.setItem('dataPeserta',JSON.stringify(peserta));
+
+tampilPeserta();
+
+}
+
+reader2.readAsDataURL(bukti);
+
+}
+
+reader1.readAsDataURL(foto);
+
+}
+
+function tampilPeserta(){
+
+var peserta=JSON.parse(localStorage.getItem('dataPeserta'))||[];
+
+var html="";
+
+peserta.forEach(function(p){
+
+html+=`
+<div class="card">
+<h3>${p.nama}</h3>
+<p>${p.program}</p>
+
+<img src="${p.foto}" class="photo">
+
+<h4>Bukti Transfer</h4>
+<img src="${p.bukti}" class="photo">
+
+<button class="print-btn" onclick="printKartu('${p.nama}','${p.program}','${p.foto}')">
+Cetak Kartu
+</button>
+
+<button class="print-btn" onclick="printSertifikat('${p.nama}')">
+Cetak Sertifikat
+</button>
+
+</div>
+`;
+
+});
+
+document.getElementById("previewPeserta").innerHTML=html;
+
+}
+
+function printKartu(nama,program,foto){
+
+var win=window.open();
+
+win.document.write(`
+<div style="text-align:center;padding:20px;border:2px solid green">
+<h2>KARTU PESERTA</h2>
+<img src="${foto}" width="120">
+<p>Nama : ${nama}</p>
+<p>Program : ${program}</p>
+<p>GRIYA INSAN MADANI</p>
+</div>
+`);
+
+win.print();
+
+}
+
+function printSertifikat(nama){
+
+var win=window.open();
+
+win.document.write(`
+<div style="text-align:center;padding:40px;border:5px solid green">
+<h1>SERTIFIKAT</h1>
+<p>Diberikan Kepada</p>
+<h2>${nama}</h2>
+<p>Telah Menyelesaikan Kursus</p>
+<h3>GRIYA INSAN MADANI</h3>
+</div>
+`);
+
+win.print();
+
+}
+
+window.onload=function(){
+tampilPeserta();
+}
+
+</script>
 body{
 background:#f5f5f5;
 }
