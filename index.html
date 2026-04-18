@@ -22,9 +22,14 @@ background:#f5f5f5;
 
 header{
 background: linear-gradient(90deg,#0f8a4a,#d32f2f);
-color:#fff;
+color:white;
 padding:20px;
 text-align:center;
+}
+
+.logo{
+width:120px;
+margin-bottom:10px;
 }
 
 nav{
@@ -63,7 +68,7 @@ box-shadow:0 0 10px rgba(0,0,0,0.1);
 .btn{
 background:#0f8a4a;
 color:white;
-padding:12px 20px;
+padding:10px 20px;
 border:none;
 border-radius:5px;
 cursor:pointer;
@@ -84,8 +89,8 @@ border:1px solid #ccc;
 
 .photo{
 width:120px;
-margin-top:10px;
 border-radius:10px;
+margin-top:10px;
 }
 
 footer{
@@ -125,8 +130,12 @@ animation:wa 2s infinite;
 <body>
 
 <header>
+
+<img src="logo.png" class="logo">
+
 <h1>GRIYA INSAN MADANI</h1>
 <p>Belajar Cepat, Mudah, dan Murah</p>
+
 </header>
 
 <nav>
@@ -267,7 +276,9 @@ bukti:bukti
 };
 
 var peserta=JSON.parse(localStorage.getItem("peserta"))||[];
+
 peserta.push(data);
+
 localStorage.setItem("peserta",JSON.stringify(peserta));
 
 tampil();
@@ -283,25 +294,7 @@ var reader=new FileReader();
 reader.onload=function(e){
 
 foto=e.target.result;
-
-if(buktiInput){
-
-var reader2=new FileReader();
-
-reader2.onload=function(e2){
-
-bukti=e2.target.result;
 simpanData();
-
-}
-
-reader2.readAsDataURL(buktiInput);
-
-}else{
-
-simpanData();
-
-}
 
 }
 
