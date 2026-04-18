@@ -318,5 +318,56 @@ window.open("https://wa.me/6281266277447?text=" + pesan, "_blank");
 
 </script>
 
+<!-- Tombol WhatsApp Profesional -->
+<style>
+.whatsapp-float {
+position: fixed;
+width: 60px;
+height: 60px;
+bottom: 20px;
+right: 20px;
+background-color: #25D366;
+color: #FFF;
+border-radius: 50px;
+text-align: center;
+font-size: 30px;
+box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+z-index: 100;
+animation: waFloat 2s infinite;
+cursor:pointer;
+}
+
+@keyframes waFloat {
+0% { transform: translateY(0px); }
+50% { transform: translateY(-8px); }
+100% { transform: translateY(0px); }
+}
+
+.whatsapp-icon {
+margin-top: 14px;
+}
+</style>
+
+<div class="whatsapp-float" onclick="openWA()">
+<div class="whatsapp-icon">💬</div>
+</div>
+
+<script>
+function openWA(){
+
+var pesan = "Halo Admin Griya Insan Madani%0A%0A"+
+"Saya ingin mendapatkan informasi:%0A"+
+"1. Pendaftaran Kursus%0A"+
+"2. Jadwal Kursus%0A"+
+"3. Biaya Kursus%0A"+
+"4. Lokasi Kursus%0A"+
+"5. Konsultasi%0A%0A"+
+"Silakan balas dengan angka.";
+
+window.open("https://wa.me/628117677050?text="+pesan, "_blank");
+
+}
+</script>
+  
 </body>
 </html>
