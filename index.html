@@ -1,4 +1,88 @@
 <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRIYA INSAN MADANI</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background: linear-gradient(90deg,#0f8a4a,#d32f2f);
+color:#fff;
+padding:20px;
+text-align:center;
+}
+
+.logo{
+width:120px;
+margin-bottom:10px;
+}
+
+nav{
+background:#0f8a4a;
+padding:15px;
+text-align:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 15px;
+font-weight:bold;
+}
+
+.hero{
+padding:60px 20px;
+text-align:center;
+background:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:15px 0;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.btn{
+background:#0f8a4a;
+color:white;
+padding:12px 20px;
+text-decoration:none;
+border-radius:5px;
+display:inline-block;
+margin-top:10px;
+border:none;
+cursor:pointer;
+}
+
+.btn:hover{
+background:#d32f2f;
+}
+
+input,textarea,select{
+width:100%;
+padding:10px;
 margin-bottom:10px;
 border-radius:5px;
 border:1px solid #ccc;
@@ -9,6 +93,12 @@ background:#0f8a4a;
 color:white;
 text-align:center;
 padding:20px;
+}
+
+.photo{
+width:120px;
+margin-top:10px;
+border-radius:10px;
 }
 
 .whatsapp{
@@ -25,6 +115,14 @@ align-items:center;
 justify-content:center;
 text-decoration:none;
 font-size:30px;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+animation:waAnim 2s infinite;
+}
+
+@keyframes waAnim{
+0%{transform:scale(1)}
+50%{transform:scale(1.1)}
+100%{transform:scale(1)}
 }
 
 </style>
@@ -40,7 +138,9 @@ font-size:30px;
 
 <nav>
 <a href="#">Beranda</a>
-<a href="#program">Program</a>
+<a href="#programKursus">Program</a>
+<a href="#biaya">Biaya</a>
+<a href="#jadwal">Jadwal</a>
 <a href="#daftar">Daftar</a>
 <a href="#kontak">Kontak</a>
 </nav>
@@ -50,7 +150,7 @@ font-size:30px;
 <p>Microsoft Office & Google Workspace</p>
 </section>
 
-<section class="container" id="program">
+<section class="container" id="programKursus">
 <h2>Program Kursus</h2>
 
 <div class="card">
@@ -65,8 +165,196 @@ font-size:30px;
 
 </section>
 
+<section class="container" id="biaya">
+<h2>Biaya Kursus</h2>
+
+<div class="card">
+<p>Paket Reguler : Rp 500.000</p>
+<p>Paket Privat : Rp 500.000</p>
+</div>
+
+</section>
+
+<section class="container" id="jadwal">
+<h2>Jadwal Kursus</h2>
+
+<div class="card">
+<p>Senin - Rabu</p>
+<p>14.00 - 16.00</p>
+<p>19.30 - 21.30</p>
+</div>
+
+</section>
+
 <section class="container" id="daftar">
 <h2>Form Pendaftaran</h2>
 
-<form id="formDaftar">
+<input type="text" id="nama" placeholder="Nama Lengkap">
+<input type="text" id="alamat" placeholder="Alamat">
+
+<select id="program">
+<option>Microsoft Office</option>
+<option>Google Workspace</option>
+</select>
+
+<label>Upload Foto Peserta</label>
+<input type="file" id="foto">
+
+<label>Upload Bukti Transfer</label>
+<input type="file" id="bukti">
+
+<button class="btn" onclick="simpan()">Daftar</button>
+
+</section>
+
+<section class="container">
+<h2>Data Peserta</h2>
+<div id="data"></div>
+</section>
+
+<section class="container" id="kontak">
+<h2>Kontak</h2>
+
+<div class="card">
+<p>GRIYA INSAN MADANI</p>
+<p>RT 05 RW 01 Desa Mumpa</p>
+<p>WA : 081266277447</p>
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 GRIYA INSAN MADANI</p>
+</footer>
+
+<a href="https://wa.me/6281266277447" class="whatsapp">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+
+function simpan(){
+
+var nama=document.getElementById('nama').value;
+var alamat=document.getElementById('alamat').value;
+var program=document.getElementById('program').value;
+
+var foto=document.getElementById('foto').files[0];
+var bukti=document.getElementById('bukti').files[0];
+
+var reader1=new FileReader();
+var reader2=new FileReader();
+
+reader1.onload=function(e){
+
+var fotoData=e.target.result;
+
+reader2.onload=function(e2){
+
+var buktiData=e2.target.result;
+
+var data={
+nama:nama,
+alamat:alamat,
+program:program,
+foto:fotoData,
+bukti:buktiData
+};
+
+var peserta=JSON.parse(localStorage.getItem('peserta'))||[];
+
+peserta.push(data);
+
+localStorage.setItem('peserta',JSON.stringify(peserta));
+
+tampil();
+
+}
+
+reader2.readAsDataURL(bukti);
+
+}
+
+reader1.readAsDataURL(foto);
+
+}
+
+function tampil(){
+
+var peserta=JSON.parse(localStorage.getItem('peserta'))||[];
+
+var html="";
+
+peserta.forEach(function(p){
+
+html+=`
+
+<div class="card">
+
+<h3>${p.nama}</h3>
+
+<img src="${p.foto}" class="photo">
+
+<br>
+
+<button class="btn" onclick="kartu('${p.nama}','${p.program}','${p.foto}')">
+Cetak Kartu Peserta
+</button>
+
+<button class="btn" onclick="sertifikat('${p.nama}')">
+Cetak Sertifikat
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById('data').innerHTML=html;
+
+}
+
+function kartu(nama,program,foto){
+
+var win=window.open();
+
+win.document.write(`
+
+<h2>KARTU PESERTA</h2>
+
+<img src="${foto}" width="100">
+
+<p>${nama}</p>
+<p>${program}</p>
+
+`);
+
+win.print();
+
+}
+
+function sertifikat(nama){
+
+var win=window.open();
+
+win.document.write(`
+
+<h1>SERTIFIKAT</h1>
+
+<p>Diberikan kepada</p>
+
+<h2>${nama}</h2>
+
+`);
+
+win.print();
+
+}
+
+window.onload=tampil;
+
+</script>
+
+</body>
 </html>
