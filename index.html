@@ -1,233 +1,4 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRIYA INSAN MADANI</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family: Arial, Helvetica, sans-serif;
-}
-
-body{
-background:#f5f5f5;
-}
-
-header{
-background: linear-gradient(90deg,#0f8a4a,#d32f2f);
-color:#fff;
-padding:20px;
-text-align:center;
-}
-
-.logo{
-width:120px;
-margin-bottom:10px;
-}
-
-nav{
-background:#0f8a4a;
-padding:15px;
-text-align:center;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin:0 15px;
-font-weight:bold;
-}
-
-.hero{
-padding:60px 20px;
-text-align:center;
-background:white;
-}
-
-.container{
-max-width:1000px;
-margin:auto;
-padding:40px 20px;
-}
-
-.card{
-background:white;
-padding:20px;
-margin:15px 0;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-
-.btn{
-background:#0f8a4a;
-color:white;
-padding:12px 20px;
-text-decoration:none;
-border-radius:5px;
-display:inline-block;
-margin-top:10px;
-border:none;
-cursor:pointer;
-}
-
-.btn:hover{
-background:#d32f2f;
-}
-
-input,textarea,select{
-width:100%;
-padding:10px;
-margin-bottom:10px;
-border-radius:5px;
-border:1px solid #ccc;
-}
-
-footer{
-background:#0f8a4a;
-color:white;
-text-align:center;
-padding:20px;
-}
-
-/* WhatsApp Button */
-
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-text-decoration:none;
-font-size:30px;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
-animation:waAnim 2s infinite;
-z-index:999;
-}
-
-@keyframes waAnim{
-0%{transform:scale(1)}
-50%{transform:scale(1.1)}
-100%{transform:scale(1)}
-}
-
-/* Install Button */
-
-.install-app{
-position:fixed;
-top:20px;
-right:20px;
-background:#0f8a4a;
-color:white;
-padding:10px 15px;
-border-radius:30px;
-cursor:pointer;
-display:none;
-z-index:999;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<button class="install-app" id="installBtn">
-Install App
-</button>
-
-<header>
-<img src="logo.png" class="logo">
-<h1>GRIYA INSAN MADANI</h1>
-<p>Belajar Cepat, Mudah, dan Murah</p>
-</header>
-
-<nav>
-<a href="#">Beranda</a>
-<a href="#programKursus">Program</a>
-<a href="#biaya">Biaya</a>
-<a href="#jadwal">Jadwal</a>
-<a href="#daftar">Daftar</a>
-<a href="#kontak">Kontak</a>
-</nav>
-
-<section class="hero">
-<h2>Kursus Komputer Profesional</h2>
-<p>Microsoft Office & Google Workspace</p>
-<a href="#daftar" class="btn">Daftar Sekarang</a>
-</section>
-
-<section class="container" id="programKursus">
-<h2>Program Kursus</h2>
-
-<div class="card">
-<h3>Microsoft Office</h3>
-<p>Microsoft Word</p>
-<p>Microsoft Excel</p>
-<p>Microsoft PowerPoint</p>
-</div>
-
-<div class="card">
-<h3>Google Workspace</h3>
-<p>Google Docs</p>
-<p>Google Sheets</p>
-<p>Google Slides</p>
-<p>Google Drive</p>
-</div>
-
-</section>
-
-<section class="container" id="biaya">
-<h2>Biaya Kursus</h2>
-
-<div class="card">
-<h3>Paket Reguler</h3>
-<p>Durasi: 1-3 Bulan</p>
-<p>Biaya: Rp 500.000</p>
-</div>
-
-<div class="card">
-<h3>Paket Privat</h3>
-<p>Durasi: 1-2 Bulan</p>
-<p>Biaya: Rp 650.000</p>
-</div>
-
-</section>
-
-<section class="container" id="jadwal">
-<h2>Jadwal Kursus</h2>
-
-<div class="card">
-<p>Senin, Selasa, Rabu</p>
-<p>Siang 14.00 - 16.00 WIB</p>
-<p>Malam 19.30 - 21.30 WIB</p>
-</div>
-
-</section>
-
-<section class="container" id="daftar">
-<h2>Form Pendaftaran</h2>
-
-<form onsubmit="kirimWA(); return false;">
-
-<input type="text" id="nama" placeholder="Nama Lengkap" required>
-<input type="text" id="ttl" placeholder="Tempat dan Tanggal Lahir" required>
-
-<select id="programForm">
-<option value="Microsoft Office">Microsoft Office</option>
-<option value="Google Workspace">Google Workspace</option>
-</select>
 
 <select id="paket">
 <option>Paket Reguler</option>
@@ -245,9 +16,7 @@ Install App
 
 <div class="card">
 <p>GRIYA INSAN MADANI</p>
-<p>RT 05 RW 01 Desa Mumpa</p>
-<p>Kec. Tempuling</p>
-<p>WhatsApp: 081266277447</p>
+<p>WhatsApp: 08117677050</p>
 </div>
 
 </section>
@@ -256,67 +25,45 @@ Install App
 <p>© 2026 GRIYA INSAN MADANI</p>
 </footer>
 
-<a href="https://wa.me/6281266277447" class="whatsapp">
+<a href="https://wa.me/628117677050" class="whatsapp">
 <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
 
-function kirimWA(){
+const scriptURL = 'PASTE_URL_GOOGLE_SCRIPT_DISINI';
 
-var nama=document.getElementById('nama').value;
-var alamat=document.getElementById('alamat').value;
-var program=document.getElementById('programForm').value;
-var paket=document.getElementById('paket').value;
+const form = document.getElementById('formDaftar');
 
-var pesan="Pendaftaran Kursus GRIYA INSAN MADANI%0A"+
+form.addEventListener('submit', e => {
+
+ e.preventDefault();
+
+ var nama = document.getElementById('nama').value;
+ var ttl = document.getElementById('ttl').value;
+ var alamat = document.getElementById('alamat').value;
+ var hp = document.getElementById('hp').value;
+ var program = document.getElementById('program').value;
+ var paket = document.getElementById('paket').value;
+
+var pesan =
+"*PENDAFTARAN KURSUS*%0A%0A"+
 "Nama : "+nama+"%0A"+
+"TTL : "+ttl+"%0A"+
 "Alamat : "+alamat+"%0A"+
+"HP : "+hp+"%0A"+
 "Program : "+program+"%0A"+
 "Paket : "+paket;
 
-window.open("https://wa.me/6281266277447?text="+pesan);
+window.open("https://wa.me/628117677050?text="+pesan,'_blank');
 
-}
+fetch(scriptURL, { method: 'POST', body: new FormData(form)})
 
-/* Install App */
+alert("Pendaftaran berhasil dikirim");
 
-let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-
-e.preventDefault();
-deferredPrompt = e;
-
-document.getElementById('installBtn').style.display='block';
-
-});
-
-document.getElementById('installBtn').addEventListener('click',()=>{
-
-deferredPrompt.prompt();
-
-});
+})
 
 </script>
 
-<button class="btn" onclick="daftarWA()">
-Daftar via WhatsApp
-</button>
-
-</script>
-
-<script>
-
-function daftarWA(){
-
-var pesan = "Halo%0A";
-
-window.open("https://wa.me/6281266277447?text=" + pesan, "_blank");
-
-}
-
-</script>
- 
 </body>
 </html>
