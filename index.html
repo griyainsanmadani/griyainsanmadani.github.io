@@ -247,7 +247,7 @@ animation:wa 2s infinite;
 
 <script>
 
-const scriptURL=https://script.google.com/macros/s/AKfycbwYCrZ_69N09dQ9wjsJ6tMRefdDTHoAsF8peBkBP-iUANvOqXCQZDMLiu4ZS7cy81Jj1Q/exec;
+const scriptURL="https://script.google.com/macros/s/AKfycbwYCrZ_69N09dQ9wjsJ6tMRefdDTHoAsF8peBkBP-iUANvOqXCQZDMLiu4ZS7cy81Jj1Q/exec";
 
 function simpan(){
 
@@ -259,10 +259,8 @@ var hp=document.getElementById("hp").value;
 var program=document.getElementById("program").value;
 
 var fotoInput=document.getElementById("foto").files[0];
-var buktiInput=document.getElementById("bukti").files[0];
 
 var foto="";
-var bukti="";
 
 function kirimGoogleSheet(){
 
@@ -275,7 +273,10 @@ tanggal:tanggal,
 alamat:alamat,
 hp:hp,
 program:program
-})
+}),
+headers:{
+"Content-Type":"application/json"
+}
 })
 
 }
@@ -289,8 +290,7 @@ tanggal:tanggal,
 alamat:alamat,
 hp:hp,
 program:program,
-foto:foto,
-bukti:bukti
+foto:foto
 };
 
 var peserta=JSON.parse(localStorage.getItem("peserta"))||[];
