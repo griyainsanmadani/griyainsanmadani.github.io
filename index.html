@@ -278,6 +278,13 @@ headers:{
 "Content-Type":"application/json"
 }
 })
+.then(response=>response.text())
+.then(data=>{
+console.log("Success:",data);
+})
+.catch(error=>{
+console.error("Error:",error);
+});
 
 }
 
@@ -327,84 +334,5 @@ simpanData();
 }
 
 }
-
-function tampil(){
-
-var peserta=JSON.parse(localStorage.getItem("peserta"))||[];
-
-var html="";
-
-peserta.forEach(function(p){
-
-html+=`
-
-<div class="card">
-
-<h3>${p.nama}</h3>
-
-<p>Tempat/Tgl Lahir : ${p.tempat} , ${p.tanggal}</p>
-<p>Alamat : ${p.alamat}</p>
-<p>No HP : ${p.hp}</p>
-
-${p.foto ? `<img src="${p.foto}" class="photo">` : ""}
-
-<br>
-
-<button class="btn" onclick="kartu('${p.nama}','${p.program}','${p.foto}')">
-Cetak Kartu Peserta
-</button>
-
-<button class="btn" onclick="sertifikat('${p.nama}')">
-Cetak Sertifikat
-</button>
-
-</div>
-
-`;
-
-});
-
-document.getElementById("data").innerHTML=html;
-
-}
-
-function kartu(nama,program,foto){
-
-var win=window.open();
-
-win.document.write(`
-
-<h2>KARTU PESERTA</h2>
-
-${foto ? `<img src="${foto}" width="100">` : ""}
-
-<p>Nama : ${nama}</p>
-<p>Program : ${program}</p>
-
-`);
-
-win.print();
-
-}
-
-function sertifikat(nama){
-
-var win=window.open();
-
-win.document.write(`
-
-<h1>SERTIFIKAT</h1>
-
-<p>Diberikan Kepada</p>
-
-<h2>${nama}</h2>
-
-`);
-
-win.print();
-
-}
-
-window.onload=tampil;
 
 </script>
