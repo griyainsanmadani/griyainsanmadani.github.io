@@ -247,6 +247,8 @@ animation:wa 2s infinite;
 
 <script>
 
+const scriptURL="PASTE_LINK_GOOGLE_SHEET_ANDA_DISINI";
+
 function simpan(){
 
 var nama=document.getElementById("nama").value;
@@ -261,6 +263,22 @@ var buktiInput=document.getElementById("bukti").files[0];
 
 var foto="";
 var bukti="";
+
+function kirimGoogleSheet(){
+
+fetch(scriptURL,{
+method:"POST",
+body:JSON.stringify({
+nama:nama,
+tempat:tempat,
+tanggal:tanggal,
+alamat:alamat,
+hp:hp,
+program:program
+})
+})
+
+}
 
 function simpanData(){
 
@@ -280,6 +298,8 @@ var peserta=JSON.parse(localStorage.getItem("peserta"))||[];
 peserta.push(data);
 
 localStorage.setItem("peserta",JSON.stringify(peserta));
+
+kirimGoogleSheet();
 
 tampil();
 
@@ -388,6 +408,3 @@ win.print();
 window.onload=tampil;
 
 </script>
-
-</body>
-</html>
