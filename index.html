@@ -177,6 +177,30 @@ height:50px;
 font-size:25px;
 }
 
+/* Animasi Form */
+#daftar{
+animation:fadeForm 1s ease;
+}
+
+@keyframes fadeForm{
+0%{
+opacity:0;
+transform:translateY(50px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+input, select{
+transition:0.3s;
+}
+
+input:focus, select:focus{
+border:2px solid #0f8a4a;
+box-shadow:0 0 5px rgba(15,138,74,0.5);
+outline:none;
+}
 }
 
 </style>
