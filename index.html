@@ -146,7 +146,11 @@ text-decoration:none;
 <select id="program">
 <option>Microsoft Office</option>
 <option>Google Workspace</option>
+
 </select>
+
+<label>Upload Foto Peserta</label>
+<input type="file" id="foto" accept="image/*">
 
 <button class="btn" onclick="simpan()">Daftar</button>
 
@@ -233,6 +237,32 @@ var alamat=document.getElementById("alamat").value;
 var hp=document.getElementById("hp").value;
 var program=document.getElementById("program").value;
 
+var fotoInput=document.getElementById("foto").files[0];
+
+var foto="";
+
+if(fotoInput){
+
+var reader=new FileReader();
+
+reader.onload=function(e){
+
+foto=e.target.result;
+
+kirimData();
+
+}
+
+reader.readAsDataURL(fotoInput);
+
+}else{
+
+kirimData();
+
+}
+
+function kirimData(){
+
 fetch(scriptURL,{
 method:"POST",
 body:JSON.stringify({
@@ -241,7 +271,8 @@ tempat:tempat,
 tanggal:tanggal,
 alamat:alamat,
 hp:hp,
-program:program
+program:program,
+foto:foto
 }),
 headers:{
 "Content-Type":"application/json"
@@ -255,6 +286,8 @@ kirimWA(nama,program);
 
 })
 .catch(err=>alert("Error"));
+
+}
 
 }
 
@@ -311,15 +344,21 @@ html+=`
 <tr>
 
 <td>${i+1}</td>
-<td>${d.nama}</td>
+<td>
+
+${d.foto ? `<img src="${d.foto}" width="40" style="border-radius:50%">` : ""}
+
+${d.nama}
+
+</td>
+
 <td>${d.program}</td>
 <td>${d.hp}</td>
+
 <td>
 
 <a href="https://wa.me/62${d.hp}" target="_blank">
-
 <button class="btn">Chat</button>
-
 </a>
 
 </td>
