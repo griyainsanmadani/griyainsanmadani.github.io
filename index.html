@@ -3,101 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRIYA INSAN MADANI</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>GRIYA INSAN MADANI</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family: Arial, Helvetica, sans-serif;
-}
-
 body{
-background:#f5f5f5;
+font-family:Arial;
+margin:0;
+background:#f4f6f9;
 }
 
 header{
-background: linear-gradient(90deg,#0f8a4a,#d32f2f);
+background:linear-gradient(90deg,#0f8a4a,#d32f2f);
 color:white;
 padding:20px;
 text-align:center;
 }
 
-.logo{
-width:120px;
-margin-bottom:10px;
-}
-
 nav{
-background:#0f8a4a;
+background:#333;
 padding:15px;
 text-align:center;
 }
 
 nav a{
 color:white;
-text-decoration:none;
 margin:0 15px;
+text-decoration:none;
 font-weight:bold;
 }
 
-.hero{
-padding:60px 20px;
-text-align:center;
-background:white;
-}
-
 .container{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
-padding:40px 20px;
+padding:20px;
 }
 
 .card{
 background:white;
 padding:20px;
-margin:15px 0;
+margin:10px 0;
 border-radius:10px;
 box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-
-.btn{
-background:#0f8a4a;
-color:white;
-padding:10px 20px;
-border:none;
-border-radius:5px;
-cursor:pointer;
-margin-top:10px;
-}
-
-.btn:hover{
-background:#d32f2f;
 }
 
 input,select{
 width:100%;
 padding:10px;
 margin-bottom:10px;
-border-radius:5px;
-border:1px solid #ccc;
 }
 
-.photo{
-width:120px;
-border-radius:10px;
-margin-top:10px;
-}
-
-footer{
+.btn{
 background:#0f8a4a;
 color:white;
-text-align:center;
+padding:10px;
+border:none;
+cursor:pointer;
+border-radius:5px;
+}
+
+.btn:hover{
+background:#d32f2f;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.box{
+background:white;
 padding:20px;
+text-align:center;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+table th,table td{
+padding:10px;
+border:1px solid #ddd;
+}
+
+table th{
+background:#0f8a4a;
+color:white;
 }
 
 .whatsapp{
@@ -114,13 +111,6 @@ align-items:center;
 justify-content:center;
 font-size:30px;
 text-decoration:none;
-animation:wa 2s infinite;
-}
-
-@keyframes wa{
-0%{transform:scale(1)}
-50%{transform:scale(1.1)}
-100%{transform:scale(1)}
 }
 
 </style>
@@ -131,68 +121,19 @@ animation:wa 2s infinite;
 
 <header>
 
-<img src="logo.png" class="logo">
-
 <h1>GRIYA INSAN MADANI</h1>
-<p>Belajar Cepat, Mudah, dan Murah</p>
+<p>Kursus Komputer Profesional</p>
 
 </header>
 
 <nav>
-<a href="#">Beranda</a>
-<a href="#program">Program</a>
-<a href="#biaya">Biaya</a>
-<a href="#jadwal">Jadwal</a>
+
 <a href="#daftar">Daftar</a>
-<a href="#peserta">Data Peserta</a>
-<a href="#kontak">Kontak</a>
+<a href="#admin">Admin</a>
+
 </nav>
 
-<section class="hero">
-<h2>Kursus Komputer Profesional</h2>
-<p>Microsoft Office & Google Workspace</p>
-</section>
-
-<section class="container" id="program">
-
-<h2>Program Kursus</h2>
-
-<div class="card">
-<h3>Microsoft Office</h3>
-<p>Word, Excel, PowerPoint</p>
-</div>
-
-<div class="card">
-<h3>Google Workspace</h3>
-<p>Docs, Sheets, Slides</p>
-</div>
-
-</section>
-
-<section class="container" id="biaya">
-
-<h2>Biaya Kursus</h2>
-
-<div class="card">
-<p>Paket Reguler : Rp 500.000</p>
-<p>Paket Privat : Rp 500.000</p>
-</div>
-
-</section>
-
-<section class="container" id="jadwal">
-
-<h2>Jadwal Kursus</h2>
-
-<div class="card">
-<p>Senin - Rabu</p>
-<p>14.00 - 16.00</p>
-<p>19.30 - 21.30</p>
-</div>
-
-</section>
-
-<section class="container" id="daftar">
+<div class="container" id="daftar">
 
 <h2>Form Pendaftaran</h2>
 
@@ -207,47 +148,81 @@ animation:wa 2s infinite;
 <option>Google Workspace</option>
 </select>
 
-<label>Upload Foto</label>
-<input type="file" id="foto">
-
-<label>Upload Bukti Transfer</label>
-<input type="file" id="bukti">
-
 <button class="btn" onclick="simpan()">Daftar</button>
 
-</section>
-
-<section class="container" id="peserta">
-
-<h2>Data Peserta</h2>
-
-<div id="data"></div>
-
-</section>
-
-<section class="container" id="kontak">
-
-<h2>Kontak</h2>
-
-<div class="card">
-<p>GRIYA INSAN MADANI</p>
-<p>RT 05 RW 01 Desa Mumpa</p>
-<p>WA : 081266277447</p>
 </div>
 
-</section>
+<div class="container" id="admin">
 
-<footer>
-<p>© 2026 GRIYA INSAN MADANI</p>
-</footer>
+<h2>Login Admin</h2>
 
-<a href="https://wa.me/6281266277447" class="whatsapp">
-<i class="fab fa-whatsapp"></i>
-</a>
+<input type="text" id="user" placeholder="Username">
+<input type="password" id="pass" placeholder="Password">
+
+<button class="btn" onclick="login()">Login</button>
+
+<div id="adminPanel" style="display:none">
+
+<h2>Dashboard Admin</h2>
+
+<div class="dashboard">
+
+<div class="box">
+<h3>Total Peserta</h3>
+<h2 id="total">0</h2>
+</div>
+
+<div class="box">
+<h3>Microsoft Office</h3>
+<h2 id="office">0</h2>
+</div>
+
+<div class="box">
+<h3>Google Workspace</h3>
+<h2 id="google">0</h2>
+</div>
+
+</div>
+
+<br>
+
+<input type="text" id="cari" placeholder="Cari peserta..." onkeyup="cariData()">
+
+<br><br>
+
+<button class="btn" onclick="downloadExcel()">Download Excel</button>
+
+<br><br>
+
+<table>
+
+<thead>
+
+<tr>
+<th>No</th>
+<th>Nama</th>
+<th>Program</th>
+<th>No HP</th>
+<th>WA</th>
+</tr>
+
+</thead>
+
+<tbody id="data"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<a href="https://wa.me/6281266277447" class="whatsapp">💬</a>
 
 <script>
 
 const scriptURL="https://script.google.com/macros/s/AKfycbw46ve5XYGOJKHMrUw-SRU_LdntPe10E8sPAvWaNcyuInJGhSomiCQYan42JqYpF3rGJg/exec";
+
+let dataPeserta=[];
 
 function simpan(){
 
@@ -257,12 +232,6 @@ var tanggal=document.getElementById("tanggal").value;
 var alamat=document.getElementById("alamat").value;
 var hp=document.getElementById("hp").value;
 var program=document.getElementById("program").value;
-
-var fotoInput=document.getElementById("foto").files[0];
-
-var foto="";
-
-function kirimGoogleSheet(){
 
 fetch(scriptURL,{
 method:"POST",
@@ -278,61 +247,133 @@ headers:{
 "Content-Type":"application/json"
 }
 })
-.then(response=>response.text())
-.then(data=>{
-console.log("Success:",data);
+.then(res=>{
+
+alert("Pendaftaran Berhasil");
+
+kirimWA(nama,program);
+
 })
-.catch(error=>{
-console.error("Error:",error);
+.catch(err=>alert("Error"));
+
+}
+
+function kirimWA(nama,program){
+
+var pesan="Halo Admin, ada pendaftaran baru:%0A%0A"+
+"Nama : "+nama+"%0A"+
+"Program : "+program;
+
+window.open("https://wa.me/6281266277447?text="+pesan);
+
+}
+
+function login(){
+
+if(user.value=="admin" && pass.value=="12345"){
+
+adminPanel.style.display="block";
+
+loadData();
+
+}else{
+
+alert("Login Salah");
+
+}
+
+}
+
+function loadData(){
+
+fetch(scriptURL)
+.then(res=>res.json())
+.then(data=>{
+
+dataPeserta=data;
+
+tampil(data);
+
+statistik(data);
+
 });
 
 }
 
-function simpanData(){
+function tampil(data){
 
-var data={
-nama:nama,
-tempat:tempat,
-tanggal:tanggal,
-alamat:alamat,
-hp:hp,
-program:program,
-foto:foto
-};
+var html="";
 
-var peserta=JSON.parse(localStorage.getItem("peserta"))||[];
+data.forEach(function(d,i){
 
-peserta.push(data);
+html+=`
 
-localStorage.setItem("peserta",JSON.stringify(peserta));
+<tr>
 
-kirimGoogleSheet();
+<td>${i+1}</td>
+<td>${d.nama}</td>
+<td>${d.program}</td>
+<td>${d.hp}</td>
+<td>
 
-tampil();
+<a href="https://wa.me/62${d.hp}" target="_blank">
 
-alert("Pendaftaran Berhasil");
+<button class="btn">Chat</button>
 
-}
+</a>
 
-if(fotoInput){
+</td>
 
-var reader=new FileReader();
+</tr>
 
-reader.onload=function(e){
+`;
 
-foto=e.target.result;
-simpanData();
+});
+
+document.getElementById("data").innerHTML=html;
 
 }
 
-reader.readAsDataURL(fotoInput);
+function statistik(data){
 
-}else{
+document.getElementById("total").innerHTML=data.length;
 
-simpanData();
+var office=0;
+var google=0;
+
+data.forEach(function(d){
+
+if(d.program=="Microsoft Office") office++;
+if(d.program=="Google Workspace") google++;
+
+});
+
+document.getElementById("office").innerHTML=office;
+document.getElementById("google").innerHTML=google;
 
 }
+
+function cariData(){
+
+var keyword=cari.value.toLowerCase();
+
+var filter=dataPeserta.filter(function(d){
+
+return d.nama.toLowerCase().includes(keyword);
+
+});
+
+tampil(filter);
+
+}
+
+function downloadExcel(){
+
+window.open(scriptURL);
 
 }
 
 </script>
+
+</body>
+</html>
