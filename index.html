@@ -10,7 +10,17 @@
 
 <style>
 
-html{scroll-behavior:smooth;}
+html{
+scroll-behavior:smooth;
+}
+
+#jadwal,
+#biaya,
+#daftar,
+#program,
+#admin{
+scroll-margin-top:120px;
+}
 
 body{
 font-family:Arial;
@@ -28,7 +38,9 @@ color:white;
 padding:20px;
 }
 
-.logo{width:80px;}
+.logo{
+width:80px;
+}
 
 nav{
 background:#333;
@@ -37,6 +49,7 @@ text-align:center;
 position:sticky;
 top:0;
 z-index:999;
+box-shadow:0 2px 5px rgba(0,0,0,0.2);
 }
 
 nav a{
@@ -44,6 +57,10 @@ color:white;
 margin:0 15px;
 text-decoration:none;
 font-weight:bold;
+}
+
+nav a:hover{
+color:#ffd700;
 }
 
 .container{
@@ -75,6 +92,11 @@ padding:12px 20px;
 border:none;
 border-radius:8px;
 cursor:pointer;
+transition:0.3s;
+}
+
+.btn:hover{
+background:#d32f2f;
 }
 
 table{
@@ -86,6 +108,7 @@ background:white;
 th,td{
 padding:10px;
 border:1px solid #ddd;
+text-align:left;
 }
 
 .whatsapp{
@@ -101,6 +124,87 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-size:30px;
+text-decoration:none;
+animation:wa 2s infinite;
+}
+
+@keyframes wa{
+0%{transform:scale(1)}
+50%{transform:scale(1.1)}
+100%{transform:scale(1)}
+}
+
+/* Responsive HP */
+@media (max-width:768px){
+
+.header{
+flex-direction:column;
+text-align:center;
+}
+
+.logo{
+width:60px;
+}
+
+nav{
+padding:10px;
+}
+
+nav a{
+display:block;
+margin:10px 0;
+}
+
+.container{
+padding:15px;
+}
+
+.card{
+margin:10px 0;
+}
+
+input, select{
+font-size:16px;
+}
+
+.btn{
+width:100%;
+}
+
+table{
+font-size:12px;
+}
+
+.whatsapp{
+width:50px;
+height:50px;
+font-size:25px;
+}
+
+/* Animasi Form */
+#daftar{
+animation:fadeForm 1s ease;
+}
+
+@keyframes fadeForm{
+0%{
+opacity:0;
+transform:translateY(50px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+input, select{
+transition:0.3s;
+}
+
+input:focus, select:focus{
+border:2px solid #0f8a4a;
+box-shadow:0 0 5px rgba(15,138,74,0.5);
+outline:none;
+}
 }
 
 .notifikasi{
@@ -116,16 +220,20 @@ z-index:9999;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header class="header">
+
 <img src="logo.png" class="logo">
+
 <div>
 <h1>GRIYA INSAN MADANI COURSE</h1>
 <p>Pusat Kursus Komputer Profesional</p>
 </div>
+
 </header>
 
 <nav>
@@ -137,23 +245,37 @@ z-index:9999;
 </nav>
 
 <section id="program">
+
 <div class="container">
 
 <h2>Program Kursus</h2>
 
 <div class="card">
 <h3>Microsoft Office</h3>
-<ul><li>Word</li><li>Excel</li><li>PowerPoint</li></ul>
+<ul>
+<li>Word</li>
+<li>Excel</li>
+<li>PowerPoint</li>
+</ul>
 </div>
 
 <div class="card">
 <h3>Google Workspace</h3>
-<ul><li>Docs</li><li>Sheets</li><li>Slides</li><li>Sites</li><li>Drive</li></ul>
+<ul>
+<li>Docs</li>
+<li>Sheets</li>
+<li>Slides</li>
+<li>Sites</li>
+<li>Drive</li>
+</ul>
 </div>
 
 <div class="card">
 <h3>Kelas</h3>
-<ul><li>Reguler</li><li>Privat</li></ul>
+<ul>
+<li>Reguler</li>
+<li>Privat</li>
+</ul>
 </div>
 
 <div class="card" id="jadwal">
@@ -161,10 +283,10 @@ z-index:9999;
 <p>Reguler : Senin - Rabu</p>
 <p>Siang : 14.00 - 15.30 WIB</p>
 <p>Malam : 20.00 - 21.30 WIB</p>
-<p>Privat : Sesuai kesepakatan</p>
+<p>Privat : Sesuai keinginan dan kesepakatan</p>
 </div>
 
-<div class="card" id="biaya">
+<<div class="card" id="biaya">
 <h3>Biaya</h3>
 <ul>
 <li>Reguler : Rp 500.000</li>
@@ -173,9 +295,11 @@ z-index:9999;
 </div>
 
 </div>
+
 </section>
 
 <section id="daftar">
+
 <div class="container">
 
 <h2>Form Pendaftaran</h2>
@@ -191,12 +315,17 @@ z-index:9999;
 <option>Google Workspace</option>
 </select>
 
+<label>Upload Foto</label>
+<input type="file" id="foto">
+
 <button class="btn" onclick="simpan()">Daftar</button>
 
 </div>
+
 </section>
 
 <section id="admin">
+
 <div class="container">
 
 <h2>Login Admin</h2>
@@ -210,9 +339,12 @@ z-index:9999;
 
 <h2>Dashboard</h2>
 
-<button class="btn" onclick="loadData()">Reload Data</button>
+<button class="btn" onclick="downloadExcel()">Download Excel</button>
+
+<br><br>
 
 <table>
+
 <thead>
 <tr>
 <th>No</th>
@@ -224,16 +356,14 @@ z-index:9999;
 </thead>
 
 <tbody id="data"></tbody>
+
 </table>
 
 </div>
 
 </div>
-</section>
 
-<div id="notifikasi" class="notifikasi">
-Pendaftaran Berhasil ✅
-</div>
+</section>
 
 <a href="https://wa.me/6281266277447" class="whatsapp" target="_blank">
 <i class="fab fa-whatsapp"></i>
@@ -241,37 +371,46 @@ Pendaftaran Berhasil ✅
 
 <script>
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbw46ve5XYGOJKHMrUw-SRU_LdntPe10E8sPAvWaNcyuInJGhSomiCQYan42JqYpF3rGJg/exec";
+const scriptURL="https://script.google.com/macros/s/AKfycbw46ve5XYGOJKHMrUw-SRU_LdntPe10E8sPAvWaNcyuInJGhSomiCQYan42JqYpF3rGJg/exec";
+
+let dataPeserta=[];
 
 function simpan(){
 
-const nama = document.getElementById("nama").value;
-const tempat = document.getElementById("tempat").value;
-const tanggal = document.getElementById("tanggal").value;
-const alamat = document.getElementById("alamat").value;
-const hp = document.getElementById("hp").value;
-const program = document.getElementById("program").value;
+var nama=nama.value;
+var tempat=tempat.value;
+var tanggal=tanggal.value;
+var alamat=alamat.value;
+var hp=hp.value;
+var program=document.getElementById("program").value;
 
 fetch(scriptURL,{
 method:"POST",
-body:JSON.stringify({nama,tempat,tanggal,alamat,hp,program}),
-headers:{"Content-Type":"application/json"}
+body:JSON.stringify({
+nama, tempat, tanggal, alamat, hp, program
+}),
+headers:{
+"Content-Type":"application/json"
+}
 })
-.then(()=>tampilNotifikasi())
-.catch(()=>alert("Error"));
+.then(res=>{
+tampilNotifikasi();
+})
+.catch(err=>alert("Error"));
 
 }
 
 function login(){
 
-const user = document.getElementById("user").value;
-const pass = document.getElementById("pass").value;
+if(user.value=="admin" && pass.value=="12345"){
 
-if(user==="admin" && pass==="12345"){
-document.getElementById("adminPanel").style.display="block";
+adminPanel.style.display="block";
 loadData();
+
 }else{
+
 alert("Login Salah");
+
 }
 
 }
@@ -282,9 +421,12 @@ fetch(scriptURL)
 .then(res=>res.json())
 .then(data=>{
 
-let html="";
+dataPeserta=data;
+
+var html="";
 
 data.forEach((d,i)=>{
+
 html+=`
 <tr>
 <td>${i+1}</td>
@@ -292,11 +434,13 @@ html+=`
 <td>${d.program}</td>
 <td>${d.hp}</td>
 <td>
-<a href="https://wa.me/62${d.hp}" target="_blank">
+<a href="https://wa.me/62${d.hp}">
 <button class="btn">Chat</button>
 </a>
 </td>
-</tr>`;
+</tr>
+`;
+
 });
 
 document.getElementById("data").innerHTML=html;
@@ -305,11 +449,25 @@ document.getElementById("data").innerHTML=html;
 
 }
 
-function tampilNotifikasi(){
-const n = document.getElementById("notifikasi");
-n.style.display="block";
-setTimeout(()=>{n.style.display="none";},3000);
+function downloadExcel(){
+
+window.open(scriptURL);
+
 }
+
+<script>
+
+function tampilNotifikasi(){
+document.getElementById("notifikasi").style.display="block";
+
+setTimeout(function(){
+document.getElementById("notifikasi").style.display="none";
+},3000);
+}
+
+<div id="notifikasi" class="notifikasi">
+Pendaftaran Berhasil ✅
+</div>
 
 </script>
 
