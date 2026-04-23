@@ -10,14 +10,19 @@
 
 <style>
 
-html{
-scroll-behavior:smooth;
-}
-
+/* GLOBAL */
 body{
 font-family:Arial;
 margin:0;
 background:#f4f6f9;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+section{
+scroll-margin-top:100px;
 }
 
 /* HEADER */
@@ -31,9 +36,7 @@ color:white;
 padding:20px;
 }
 
-.logo{
-width:80px;
-}
+.logo{width:70px}
 
 /* NAV */
 nav{
@@ -52,14 +55,7 @@ text-decoration:none;
 font-weight:bold;
 }
 
-nav a:hover{
-color:#ffd700;
-}
-
-/* SECTION OFFSET */
-#jadwal,#biaya,#daftar,#program,#admin{
-scroll-margin-top:120px;
-}
+nav a:hover{color:#ffd700}
 
 /* CONTAINER */
 .container{
@@ -81,9 +77,14 @@ box-shadow:0 0 10px rgba(0,0,0,0.1);
 input, select{
 width:100%;
 padding:10px;
-margin:5px 0;
+margin:6px 0;
 border-radius:5px;
 border:1px solid #ccc;
+}
+
+input:focus{
+border:2px solid #0f8a4a;
+outline:none;
 }
 
 /* BUTTON */
@@ -101,6 +102,22 @@ width:100%;
 background:#d32f2f;
 }
 
+/* DASHBOARD */
+.dashboard{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.box{
+flex:1;
+background:#0f8a4a;
+color:white;
+padding:15px;
+border-radius:10px;
+text-align:center;
+}
+
 /* TABLE */
 table{
 width:100%;
@@ -113,8 +130,20 @@ padding:10px;
 border:1px solid #ddd;
 }
 
-/* WA BUTTON */
-.whatsapp{
+/* NOTIFIKASI */
+.notif{
+position:fixed;
+top:20px;
+right:20px;
+background:#0f8a4a;
+color:white;
+padding:15px;
+border-radius:8px;
+display:none;
+}
+
+/* WA */
+.wa{
 position:fixed;
 bottom:20px;
 right:20px;
@@ -128,23 +157,39 @@ align-items:center;
 justify-content:center;
 font-size:30px;
 text-decoration:none;
-animation:wa 2s infinite;
 }
 
-@keyframes wa{
-0%{transform:scale(1)}
-50%{transform:scale(1.1)}
-100%{transform:scale(1)}
-}
-
-/* SOSMED EXPAND */
-.sosmed-container{
+/* SOSMED */
+.sosmed{
 position:fixed;
 right:20px;
 bottom:100px;
 }
 
-.sosmed-toggle{
+.sosmed a{
+display:block;
+width:50px;
+height:50px;
+margin:8px 0;
+border-radius:50%;
+color:white;
+text-align:center;
+line-height:50px;
+transform:translateY(20px);
+opacity:0;
+transition:0.3s;
+}
+
+.sosmed.show a{
+opacity:1;
+transform:translateY(0);
+}
+
+.fb{background:#1877f2}
+.ig{background:#e4405f}
+.yt{background:#ff0000}
+
+.toggle{
 background:#0f8a4a;
 color:white;
 width:60px;
@@ -156,47 +201,12 @@ justify-content:center;
 cursor:pointer;
 }
 
-.sosmed-menu a{
-display:block;
-width:50px;
-height:50px;
-margin-bottom:10px;
-border-radius:50%;
-color:white;
-text-align:center;
-line-height:50px;
-opacity:0;
-transform:translateY(20px);
-transition:0.3s;
-}
-
-.show a:nth-child(1){opacity:1; transform:translateY(0);}
-.show a:nth-child(2){opacity:1; transform:translateY(0); transition-delay:0.1s;}
-.show a:nth-child(3){opacity:1; transform:translateY(0); transition-delay:0.2s;}
-
-.fb{background:#1877f2;}
-.ig{background:#e4405f;}
-.yt{background:#ff0000;}
-
-/* NOTIFIKASI */
-.notifikasi{
-position:fixed;
-top:20px;
-right:20px;
-background:#0f8a4a;
-color:white;
-padding:15px;
-border-radius:8px;
-display:none;
-}
-
 /* FOOTER */
 .footer{
 background:#333;
 color:white;
 text-align:center;
 padding:20px;
-margin-top:40px;
 }
 
 </style>
@@ -204,182 +214,174 @@ margin-top:40px;
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
 <img src="logo.png" class="logo">
 <div>
-<h1>GRIYA INSAN MADANI COURSE</h1>
-<p>Pusat Kursus Komputer Profesional</p>
+<h2>GRIYA INSAN MADANI COURSE</h2>
+<p>Kursus Komputer Profesional</p>
 </div>
 </header>
 
-<!-- NAV -->
 <nav>
 <a href="#program">Program</a>
-<a href="#jadwal">Jadwal</a>
-<a href="#biaya">Biaya</a>
 <a href="#daftar">Daftar</a>
 <a href="#admin">Admin</a>
 </nav>
 
-<!-- PROGRAM -->
 <section id="program">
 <div class="container">
-<h2>Program Kursus</h2>
+<h2>Program</h2>
 
 <div class="card">
 <h3>Microsoft Office</h3>
-<ul><li>Word</li><li>Excel</li><li>PowerPoint</li></ul>
+<p>Word, Excel, PowerPoint</p>
 </div>
 
 <div class="card">
 <h3>Google Workspace</h3>
-<ul><li>Docs</li><li>Sheets</li><li>Slides</li></ul>
-</div>
-
-<div class="card" id="jadwal">
-<h3>Jadwal</h3>
-<p>Reguler: Senin-Rabu</p>
-<p>Siang: 14.00 - 15.30</p>
-<p>Malam: 20.00 - 21.30</p>
-</div>
-
-<div class="card" id="biaya">
-<h3>Biaya</h3>
-<p>Reguler: 500K</p>
-<p>Privat: 650K</p>
+<p>Docs, Sheets, Slides, Drive</p>
 </div>
 
 </div>
 </section>
 
-<!-- FORM -->
 <section id="daftar">
 <div class="container">
-<h2>Form Pendaftaran</h2>
+<h2>Pendaftaran</h2>
 
 <input id="nama" placeholder="Nama">
-<input id="tempat" placeholder="Tempat Lahir">
-<input id="tanggal" type="date">
-<input id="alamat" placeholder="Alamat">
-<input id="hp" placeholder="HP">
+<input id="hp" placeholder="Nomor HP">
 
-<select id="programKursus">
+<select id="program">
 <option>Microsoft Office</option>
 <option>Google Workspace</option>
 </select>
 
-<button class="btn" onclick="simpan()">Daftar</button>
+<button class="btn" onclick="daftar()">Daftar Sekarang</button>
+
 </div>
 </section>
 
-<!-- ADMIN -->
 <section id="admin">
 <div class="container">
-<h2>Login Admin</h2>
+
+<h2>Admin</h2>
 
 <input id="user" placeholder="Username">
 <input id="pass" type="password" placeholder="Password">
 
 <button class="btn" onclick="login()">Login</button>
 
-<div id="adminPanel" style="display:none">
+<div id="panel" style="display:none">
 
-<button class="btn" onclick="downloadExcel()">Download Excel</button>
+<div class="dashboard">
+<div class="box"><h3>Total</h3><h2 id="total">0</h2></div>
+<div class="box"><h3>Office</h3><h2 id="office">0</h2></div>
+<div class="box"><h3>Google</h3><h2 id="google">0</h2></div>
+</div>
+
+<br>
+
+<button class="btn" onclick="download()">Download Excel</button>
 
 <table>
 <thead>
-<tr><th>No</th><th>Nama</th><th>Program</th><th>HP</th><th>WA</th></tr>
+<tr><th>No</th><th>Nama</th><th>Program</th><th>HP</th></tr>
 </thead>
 <tbody id="data"></tbody>
 </table>
 
 </div>
+
 </div>
 </section>
 
 <!-- SOSMED -->
-<div class="sosmed-container">
-<div id="menuSosmed" class="sosmed-menu">
+<div class="sosmed" id="sosmed">
 <a href="https://www.facebook.com/LKPGIM/" class="fb"><i class="fab fa-facebook-f"></i></a>
 <a href="https://www.instagram.com/griyainsanmadanicourse/" class="ig"><i class="fab fa-instagram"></i></a>
 <a href="https://www.youtube.com/@pembelajarchannel/" class="yt"><i class="fab fa-youtube"></i></a>
-</div>
-<div class="sosmed-toggle" onclick="toggleSosmed()">☰</div>
+<div class="toggle" onclick="toggle()">☰</div>
 </div>
 
-<!-- WA -->
-<a href="https://wa.me/6281266277447" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/6281266277447" class="wa"><i class="fab fa-whatsapp"></i></a>
 
-<!-- NOTIF -->
-<div id="notifikasi" class="notifikasi">Pendaftaran Berhasil ✅</div>
+<div class="notif" id="notif">Berhasil daftar ✅</div>
 
 <script>
 
-/* ================= DAFTAR ================= */
-function simpan(){
+const url="https://script.google.com/macros/s/AKfycbzO0bNzBsrMUpcV4krhty_awua1RDMfcOWAyYC7IFE4CiCodqYYwFp3bI-C6YVZcT27/exec";
 
-var nama=document.getElementById("nama").value;
-var tempat=document.getElementById("tempat").value;
-var tanggal=document.getElementById("tanggal").value;
-var alamat=document.getElementById("alamat").value;
-var hp=document.getElementById("hp").value;
-var program=document.getElementById("programKursus").value;
+/* DAFTAR */
+function daftar(){
 
-var nomorAdmin="6281266277447";
+let nama=nama.value;
+let hp=hp.value;
+let program=program.value;
 
-var pesan=
-"FORM PENDAFTARAN GIMC%0A%0A"+
-"Nama : "+nama+"%0A"+
-"Tempat Lahir : "+tempat+"%0A"+
-"Tanggal Lahir : "+tanggal+"%0A"+
-"Alamat : "+alamat+"%0A"+
-"No HP : "+hp+"%0A"+
-"Program : "+program+"%0A%0A"+
-"Mohon kirim Pas foto Latar Belakang merah setelah pesan ini";
+if(!nama || !hp){
+alert("Isi data dulu!");
+return;
+}
 
-window.open("https://wa.me/"+nomorAdmin+"?text="+pesan,"_blank");
+fetch(url,{
+method:"POST",
+body:JSON.stringify({nama,hp,program}),
+headers:{"Content-Type":"application/json"}
+});
+
+notif.style.display="block";
+setTimeout(()=>notif.style.display="none",3000);
+
+window.open("https://wa.me/6281266277447?text=Nama:"+nama+" Program:"+program);
 
 }
 
 /* LOGIN */
 function login(){
 if(user.value=="admin" && pass.value=="12345"){
-adminPanel.style.display="block";
-loadData();
-}else{
-alert("Login salah");
-}
+panel.style.display="block";
+load();
+}else alert("Salah");
 }
 
-/* LOAD */
-function loadData(){
-fetch(scriptURL)
-.then(res=>res.json())
+/* LOAD DATA */
+function load(){
+fetch(url)
+.then(r=>r.json())
 .then(data=>{
+
 let html="";
+let office=0, google=0;
+
 data.forEach((d,i)=>{
 html+=`<tr>
 <td>${i+1}</td>
 <td>${d.nama}</td>
 <td>${d.program}</td>
 <td>${d.hp}</td>
-<td><a href="https://wa.me/62${d.hp}">Chat</a></td>
 </tr>`;
+
+if(d.program=="Microsoft Office") office++;
+if(d.program=="Google Workspace") google++;
 });
-data.innerHTML=html;
+
+document.getElementById("data").innerHTML=html;
+total.innerHTML=data.length;
+office.innerHTML=office;
+google.innerHTML=google;
+
 });
+}
+
+/* DOWNLOAD */
+function download(){
+window.open(url);
 }
 
 /* SOSMED */
-function toggleSosmed(){
-menuSosmed.classList.toggle("show");
-}
-
-/* NOTIF */
-function tampilNotifikasi(){
-notifikasi.style.display="block";
-setTimeout(()=>{notifikasi.style.display="none";},3000);
+function toggle(){
+sosmed.classList.toggle("show");
 }
 
 </script>
