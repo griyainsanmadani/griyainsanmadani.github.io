@@ -230,7 +230,7 @@ z-index:9999;
 
 </style>
 
-/* SOSIAL MEDIA FLOATING */
+/* SOSMED ANIMASI STAGGER */
 .sosmed-container{
 position:fixed;
 right:20px;
@@ -254,12 +254,13 @@ transition:0.3s;
 }
 
 .sosmed-menu{
-display:none;
+display:flex;
 flex-direction:column;
-margin-bottom:10px;
 gap:10px;
+margin-bottom:10px;
 }
 
+/* SEMUA ITEM AWALNYA TERSEMBUNYI */
 .sosmed-menu a{
 width:50px;
 height:50px;
@@ -271,16 +272,35 @@ color:white;
 font-size:20px;
 text-decoration:none;
 box-shadow:0 4px 10px rgba(0,0,0,0.3);
+
+opacity:0;
+transform:translateY(20px);
+transition:0.4s;
 }
 
+/* WARNA */
 .fb{ background:#1877f2; }
 .ig{ background:#e4405f; }
 .yt{ background:#ff0000; }
 
-.show{
-display:flex;
+/* SAAT AKTIF (KELUAR SATU PER SATU) */
+.show a:nth-child(1){
+opacity:1;
+transform:translateY(0);
+transition-delay:0.1s;
 }
 
+.show a:nth-child(2){
+opacity:1;
+transform:translateY(0);
+transition-delay:0.2s;
+}
+
+.show a:nth-child(3){
+opacity:1;
+transform:translateY(0);
+transition-delay:0.3s;
+}
 </head>
 
 <body>
