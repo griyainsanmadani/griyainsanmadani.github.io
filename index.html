@@ -10,19 +10,12 @@
 
 <style>
 
-/* GLOBAL */
+html{scroll-behavior:smooth;}
+
 body{
 font-family:Arial;
 margin:0;
 background:#f4f6f9;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-section{
-scroll-margin-top:100px;
 }
 
 /* HEADER */
@@ -36,7 +29,7 @@ color:white;
 padding:20px;
 }
 
-.logo{width:70px}
+.logo{width:80px;}
 
 /* NAV */
 nav{
@@ -50,12 +43,17 @@ z-index:999;
 
 nav a{
 color:white;
-margin:0 15px;
+margin:0 10px;
 text-decoration:none;
 font-weight:bold;
 }
 
-nav a:hover{color:#ffd700}
+nav a:hover{color:#ffd700;}
+
+/* SECTION OFFSET */
+#program,#jadwal,#biaya,#daftar,#admin{
+scroll-margin-top:120px;
+}
 
 /* CONTAINER */
 .container{
@@ -74,17 +72,12 @@ box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 /* FORM */
-input, select{
+input,select{
 width:100%;
 padding:10px;
-margin:6px 0;
+margin:5px 0;
 border-radius:5px;
 border:1px solid #ccc;
-}
-
-input:focus{
-border:2px solid #0f8a4a;
-outline:none;
 }
 
 /* BUTTON */
@@ -95,28 +88,9 @@ padding:12px;
 border:none;
 border-radius:8px;
 cursor:pointer;
-width:100%;
 }
 
-.btn:hover{
-background:#d32f2f;
-}
-
-/* DASHBOARD */
-.dashboard{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-}
-
-.box{
-flex:1;
-background:#0f8a4a;
-color:white;
-padding:15px;
-border-radius:10px;
-text-align:center;
-}
+.btn:hover{background:#d32f2f;}
 
 /* TABLE */
 table{
@@ -130,20 +104,8 @@ padding:10px;
 border:1px solid #ddd;
 }
 
-/* NOTIFIKASI */
-.notif{
-position:fixed;
-top:20px;
-right:20px;
-background:#0f8a4a;
-color:white;
-padding:15px;
-border-radius:8px;
-display:none;
-}
-
 /* WA */
-.wa{
+.whatsapp{
 position:fixed;
 bottom:20px;
 right:20px;
@@ -156,40 +118,23 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-size:30px;
-text-decoration:none;
+animation:wa 2s infinite;
+}
+
+@keyframes wa{
+0%{transform:scale(1)}
+50%{transform:scale(1.1)}
+100%{transform:scale(1)}
 }
 
 /* SOSMED */
-.sosmed{
+.sosmed-container{
 position:fixed;
 right:20px;
 bottom:100px;
 }
 
-.sosmed a{
-display:block;
-width:50px;
-height:50px;
-margin:8px 0;
-border-radius:50%;
-color:white;
-text-align:center;
-line-height:50px;
-transform:translateY(20px);
-opacity:0;
-transition:0.3s;
-}
-
-.sosmed.show a{
-opacity:1;
-transform:translateY(0);
-}
-
-.fb{background:#1877f2}
-.ig{background:#e4405f}
-.yt{background:#ff0000}
-
-.toggle{
+.sosmed-toggle{
 background:#0f8a4a;
 color:white;
 width:60px;
@@ -201,12 +146,47 @@ justify-content:center;
 cursor:pointer;
 }
 
+.sosmed-menu a{
+display:block;
+width:50px;
+height:50px;
+margin-bottom:10px;
+border-radius:50%;
+color:white;
+text-align:center;
+line-height:50px;
+opacity:0;
+transform:translateY(20px);
+transition:0.3s;
+}
+
+.show a:nth-child(1){opacity:1; transform:translateY(0);}
+.show a:nth-child(2){opacity:1; transform:translateY(0); transition-delay:0.1s;}
+.show a:nth-child(3){opacity:1; transform:translateY(0); transition-delay:0.2s;}
+
+.fb{background:#1877f2;}
+.ig{background:#e4405f;}
+.yt{background:#ff0000;}
+
+/* NOTIF */
+.notif{
+position:fixed;
+top:20px;
+right:20px;
+background:#0f8a4a;
+color:white;
+padding:15px;
+border-radius:8px;
+display:none;
+}
+
 /* FOOTER */
 .footer{
 background:#333;
 color:white;
 text-align:center;
 padding:20px;
+margin-top:40px;
 }
 
 </style>
@@ -214,58 +194,96 @@ padding:20px;
 
 <body>
 
+<!-- HEADER -->
 <header class="header">
 <img src="logo.png" class="logo">
 <div>
 <h2>GRIYA INSAN MADANI COURSE</h2>
-<p>Kursus Komputer Profesional</p>
+<p>Pusat Kursus Komputer Profesional</p>
 </div>
 </header>
 
+<!-- NAV -->
 <nav>
 <a href="#program">Program</a>
+<a href="#jadwal">Jadwal</a>
+<a href="#biaya">Biaya</a>
 <a href="#daftar">Daftar</a>
 <a href="#admin">Admin</a>
 </nav>
 
+<!-- PROGRAM -->
 <section id="program">
 <div class="container">
-<h2>Program</h2>
 
 <div class="card">
-<h3>Microsoft Office</h3>
-<p>Word, Excel, PowerPoint</p>
+<h3>Program</h3>
+<p>Microsoft Office (Word, Excel, PowerPoint)</p>
+<p>Google Workspace (Docs, Sheets, Slides, Sites, Drive)</p>
 </div>
 
 <div class="card">
-<h3>Google Workspace</h3>
-<p>Docs, Sheets, Slides, Drive</p>
+<h3>Kelas</h3>
+<p>Reguler & Privat</p>
 </div>
 
 </div>
 </section>
 
+<!-- JADWAL -->
+<section id="jadwal">
+<div class="container">
+<div class="card">
+<h3>Jadwal</h3>
+<p>Reguler: Senin - Rabu</p>
+<p>Siang: 14.00 - 15.30</p>
+<p>Malam: 20.00 - 21.30</p>
+<p>Privat: Fleksibel</p>
+</div>
+</div>
+</section>
+
+<!-- BIAYA -->
+<section id="biaya">
+<div class="container">
+<div class="card">
+<h3>Biaya</h3>
+<p>Reguler: Rp 500.000</p>
+<p>Privat: Rp 650.000</p>
+</div>
+</div>
+</section>
+
+<!-- FORM -->
 <section id="daftar">
 <div class="container">
-<h2>Pendaftaran</h2>
+<div class="card">
+
+<h3>Form Pendaftaran</h3>
 
 <input id="nama" placeholder="Nama">
-<input id="hp" placeholder="Nomor HP">
+<input id="tempat" placeholder="Tempat Lahir">
+<input id="tanggal" type="date">
+<input id="alamat" placeholder="Alamat">
+<input id="hp" placeholder="No HP">
 
-<select id="program">
+<select id="programKursus">
 <option>Microsoft Office</option>
 <option>Google Workspace</option>
 </select>
 
-<button class="btn" onclick="daftar()">Daftar Sekarang</button>
+<button class="btn" onclick="simpan()">Daftar</button>
 
+</div>
 </div>
 </section>
 
+<!-- ADMIN -->
 <section id="admin">
 <div class="container">
+<div class="card">
 
-<h2>Admin</h2>
+<h3>Login Admin</h3>
 
 <input id="user" placeholder="Username">
 <input id="pass" type="password" placeholder="Password">
@@ -274,15 +292,8 @@ padding:20px;
 
 <div id="panel" style="display:none">
 
-<div class="dashboard">
-<div class="box"><h3>Total</h3><h2 id="total">0</h2></div>
-<div class="box"><h3>Office</h3><h2 id="office">0</h2></div>
-<div class="box"><h3>Google</h3><h2 id="google">0</h2></div>
-</div>
-
-<br>
-
-<button class="btn" onclick="download()">Download Excel</button>
+<button class="btn" onclick="loadData()">Refresh</button>
+<button class="btn" onclick="downloadExcel()">Download Excel</button>
 
 <table>
 <thead>
@@ -294,46 +305,55 @@ padding:20px;
 </div>
 
 </div>
+</div>
 </section>
 
 <!-- SOSMED -->
-<div class="sosmed" id="sosmed">
+<div class="sosmed-container">
+<div id="menuSosmed" class="sosmed-menu">
 <a href="https://www.facebook.com/LKPGIM/" class="fb"><i class="fab fa-facebook-f"></i></a>
 <a href="https://www.instagram.com/griyainsanmadanicourse/" class="ig"><i class="fab fa-instagram"></i></a>
 <a href="https://www.youtube.com/@pembelajarchannel/" class="yt"><i class="fab fa-youtube"></i></a>
-<div class="toggle" onclick="toggle()">☰</div>
+</div>
+<div class="sosmed-toggle" onclick="toggleSosmed()">☰</div>
 </div>
 
-<a href="https://wa.me/6281266277447" class="wa"><i class="fab fa-whatsapp"></i></a>
+<!-- WA -->
+<a href="https://wa.me/6281266277447" class="whatsapp">
+<i class="fab fa-whatsapp"></i>
+</a>
 
-<div class="notif" id="notif">Berhasil daftar ✅</div>
+<!-- NOTIF -->
+<div id="notif" class="notif">Pendaftaran Berhasil ✅</div>
 
 <script>
 
-const url="https://script.google.com/macros/s/AKfycbzO0bNzBsrMUpcV4krhty_awua1RDMfcOWAyYC7IFE4CiCodqYYwFp3bI-C6YVZcT27/exec";
+const scriptURL="ISI LINK GOOGLE SCRIPT ANDA";
 
-/* DAFTAR */
-function daftar(){
+/* SIMPAN */
+function simpan(){
 
-let nama=nama.value;
-let hp=hp.value;
-let program=program.value;
+let data={
+nama:nama.value,
+tempat:tempat.value,
+tanggal:tanggal.value,
+alamat:alamat.value,
+hp:hp.value,
+program:programKursus.value
+};
 
-if(!nama || !hp){
-alert("Isi data dulu!");
-return;
-}
-
-fetch(url,{
+fetch(scriptURL,{
 method:"POST",
-body:JSON.stringify({nama,hp,program}),
-headers:{"Content-Type":"application/json"}
-});
-
+body:JSON.stringify(data)
+})
+.then(()=>{
 notif.style.display="block";
 setTimeout(()=>notif.style.display="none",3000);
 
-window.open("https://wa.me/6281266277447?text=Nama:"+nama+" Program:"+program);
+window.open("https://wa.me/6281266277447?text=Pendaftaran "+data.nama);
+
+})
+.catch(()=>alert("Error"));
 
 }
 
@@ -341,53 +361,44 @@ window.open("https://wa.me/6281266277447?text=Nama:"+nama+" Program:"+program);
 function login(){
 if(user.value=="admin" && pass.value=="12345"){
 panel.style.display="block";
-load();
-}else alert("Salah");
+loadData();
+}else{
+alert("Login salah");
+}
 }
 
-/* LOAD DATA */
-function load(){
-fetch(url)
-.then(r=>r.json())
-.then(data=>{
-
+/* LOAD */
+function loadData(){
+fetch(scriptURL)
+.then(res=>res.json())
+.then(res=>{
 let html="";
-let office=0, google=0;
-
-data.forEach((d,i)=>{
+res.forEach((d,i)=>{
 html+=`<tr>
 <td>${i+1}</td>
 <td>${d.nama}</td>
 <td>${d.program}</td>
 <td>${d.hp}</td>
 </tr>`;
-
-if(d.program=="Microsoft Office") office++;
-if(d.program=="Google Workspace") google++;
 });
-
-document.getElementById("data").innerHTML=html;
-total.innerHTML=data.length;
-office.innerHTML=office;
-google.innerHTML=google;
-
+data.innerHTML=html;
 });
 }
 
-/* DOWNLOAD */
-function download(){
-window.open(url);
+/* DOWNLOAD FIX */
+function downloadExcel(){
+window.open(scriptURL + "?export=excel");
 }
 
 /* SOSMED */
-function toggle(){
-sosmed.classList.toggle("show");
+function toggleSosmed(){
+menuSosmed.classList.toggle("show");
 }
 
 </script>
 
 <footer class="footer">
-<p>© 2026 GIMC</p>
+<p>© 2026 GRIYA INSAN MADANI COURSE</p>
 </footer>
 
 </body>
