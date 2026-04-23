@@ -10,7 +10,9 @@
 
 <style>
 
-html{scroll-behavior:smooth;}
+html{
+scroll-behavior:smooth;
+}
 
 body{
 font-family:Arial;
@@ -29,7 +31,9 @@ color:white;
 padding:20px;
 }
 
-.logo{width:80px;}
+.logo{
+width:80px;
+}
 
 /* NAV */
 nav{
@@ -43,15 +47,17 @@ z-index:999;
 
 nav a{
 color:white;
-margin:0 10px;
+margin:0 15px;
 text-decoration:none;
 font-weight:bold;
 }
 
-nav a:hover{color:#ffd700;}
+nav a:hover{
+color:#ffd700;
+}
 
 /* SECTION OFFSET */
-#program,#jadwal,#biaya,#daftar,#admin{
+#jadwal,#biaya,#daftar,#program,#admin{
 scroll-margin-top:120px;
 }
 
@@ -72,7 +78,7 @@ box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 /* FORM */
-input,select{
+input, select{
 width:100%;
 padding:10px;
 margin:5px 0;
@@ -88,9 +94,12 @@ padding:12px;
 border:none;
 border-radius:8px;
 cursor:pointer;
+width:100%;
 }
 
-.btn:hover{background:#d32f2f;}
+.btn:hover{
+background:#d32f2f;
+}
 
 /* TABLE */
 table{
@@ -104,7 +113,7 @@ padding:10px;
 border:1px solid #ddd;
 }
 
-/* WA */
+/* WA BUTTON */
 .whatsapp{
 position:fixed;
 bottom:20px;
@@ -118,6 +127,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-size:30px;
+text-decoration:none;
 animation:wa 2s infinite;
 }
 
@@ -127,7 +137,7 @@ animation:wa 2s infinite;
 100%{transform:scale(1)}
 }
 
-/* SOSMED */
+/* SOSMED EXPAND */
 .sosmed-container{
 position:fixed;
 right:20px;
@@ -168,8 +178,8 @@ transition:0.3s;
 .ig{background:#e4405f;}
 .yt{background:#ff0000;}
 
-/* NOTIF */
-.notif{
+/* NOTIFIKASI */
+.notifikasi{
 position:fixed;
 top:20px;
 right:20px;
@@ -198,7 +208,7 @@ margin-top:40px;
 <header class="header">
 <img src="logo.png" class="logo">
 <div>
-<h2>GRIYA INSAN MADANI COURSE</h2>
+<h1>GRIYA INSAN MADANI COURSE</h1>
 <p>Pusat Kursus Komputer Profesional</p>
 </div>
 </header>
@@ -215,94 +225,74 @@ margin-top:40px;
 <!-- PROGRAM -->
 <section id="program">
 <div class="container">
+<h2>Program Kursus</h2>
 
 <div class="card">
-<h3>Program</h3>
-<p>Microsoft Office (Word, Excel, PowerPoint)</p>
-<p>Google Workspace (Docs, Sheets, Slides, Sites, Drive)</p>
+<h3>Microsoft Office</h3>
+<ul><li>Word</li><li>Excel</li><li>PowerPoint</li></ul>
 </div>
 
 <div class="card">
-<h3>Kelas</h3>
-<p>Reguler & Privat</p>
+<h3>Google Workspace</h3>
+<ul><li>Docs</li><li>Sheets</li><li>Slides</li></ul>
 </div>
 
-</div>
-</section>
-
-<!-- JADWAL -->
-<section id="jadwal">
-<div class="container">
-<div class="card">
+<div class="card" id="jadwal">
 <h3>Jadwal</h3>
-<p>Reguler: Senin - Rabu</p>
+<p>Reguler: Senin-Rabu</p>
 <p>Siang: 14.00 - 15.30</p>
 <p>Malam: 20.00 - 21.30</p>
-<p>Privat: Fleksibel</p>
 </div>
-</div>
-</section>
 
-<!-- BIAYA -->
-<section id="biaya">
-<div class="container">
-<div class="card">
+<div class="card" id="biaya">
 <h3>Biaya</h3>
-<p>Reguler: Rp 500.000</p>
-<p>Privat: Rp 650.000</p>
+<p>Reguler: 500K</p>
+<p>Privat: 650K</p>
 </div>
+
 </div>
 </section>
 
 <!-- FORM -->
 <section id="daftar">
 <div class="container">
-<div class="card">
-
-<h3>Form Pendaftaran</h3>
+<h2>Form Pendaftaran</h2>
 
 <input id="nama" placeholder="Nama">
 <input id="tempat" placeholder="Tempat Lahir">
 <input id="tanggal" type="date">
 <input id="alamat" placeholder="Alamat">
-<input id="hp" placeholder="No HP">
+<input id="hp" placeholder="HP">
 
-<select id="program">
+<select id="programKursus">
 <option>Microsoft Office</option>
 <option>Google Workspace</option>
 </select>
 
 <button class="btn" onclick="simpan()">Daftar</button>
-
-</div>
 </div>
 </section>
 
 <!-- ADMIN -->
 <section id="admin">
 <div class="container">
-<div class="card">
-
-<h3>Login Admin</h3>
+<h2>Login Admin</h2>
 
 <input id="user" placeholder="Username">
 <input id="pass" type="password" placeholder="Password">
 
 <button class="btn" onclick="login()">Login</button>
 
-<div id="panel" style="display:none">
+<div id="adminPanel" style="display:none">
 
-<button class="btn" onclick="loadData()">Refresh</button>
 <button class="btn" onclick="downloadExcel()">Download Excel</button>
 
 <table>
 <thead>
-<tr><th>No</th><th>Nama</th><th>Program</th><th>HP</th></tr>
+<tr><th>No</th><th>Nama</th><th>Program</th><th>HP</th><th>WA</th></tr>
 </thead>
 <tbody id="data"></tbody>
 </table>
-
-</div>
 
 </div>
 </div>
@@ -319,48 +309,43 @@ margin-top:40px;
 </div>
 
 <!-- WA -->
-<a href="https://wa.me/6281266277447" class="whatsapp">
-<i class="fab fa-whatsapp"></i>
-</a>
+<a href="https://wa.me/6281266277447" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
 
 <!-- NOTIF -->
-<div id="notif" class="notif">Pendaftaran Berhasil ✅</div>
+<div id="notifikasi" class="notifikasi">Pendaftaran Berhasil ✅</div>
 
 <script>
 
-const scriptURL="https://script.google.com/macros/s/AKfycbzO0bNzBsrMUpcV4krhty_awua1RDMfcOWAyYC7IFE4CiCodqYYwFp3bI-C6YVZcT27/exec";
-
-/* SIMPAN */
+/* ================= DAFTAR ================= */
 function simpan(){
 
-let data={
-nama:nama.value,
-tempat:tempat.value,
-tanggal:tanggal.value,
-alamat:alamat.value,
-hp:hp.value,
-program:programKursus.value
-};
+var nama=document.getElementById("nama").value;
+var tempat=document.getElementById("tempat").value;
+var tanggal=document.getElementById("tanggal").value;
+var alamat=document.getElementById("alamat").value;
+var hp=document.getElementById("hp").value;
+var program=document.getElementById("programKursus").value;
 
-fetch(scriptURL,{
-method:"POST",
-body:JSON.stringify(data)
-})
-.then(()=>{
-notif.style.display="block";
-setTimeout(()=>notif.style.display="none",3000);
+var nomorAdmin="6281266277447";
 
-window.open("https://wa.me/6281266277447?text=Pendaftaran "+data.nama);
+var pesan=
+"FORM PENDAFTARAN GIMC%0A%0A"+
+"Nama : "+nama+"%0A"+
+"Tempat Lahir : "+tempat+"%0A"+
+"Tanggal Lahir : "+tanggal+"%0A"+
+"Alamat : "+alamat+"%0A"+
+"No HP : "+hp+"%0A"+
+"Program : "+program+"%0A%0A"+
+"Mohon kirim Pas foto Latar Belakang merah setelah pesan ini";
 
-})
-.catch(()=>alert("Error"));
+window.open("https://wa.me/"+nomorAdmin+"?text="+pesan,"_blank");
 
 }
 
 /* LOGIN */
 function login(){
 if(user.value=="admin" && pass.value=="12345"){
-panel.style.display="block";
+adminPanel.style.display="block";
 loadData();
 }else{
 alert("Login salah");
@@ -371,23 +356,19 @@ alert("Login salah");
 function loadData(){
 fetch(scriptURL)
 .then(res=>res.json())
-.then(res=>{
+.then(data=>{
 let html="";
-res.forEach((d,i)=>{
+data.forEach((d,i)=>{
 html+=`<tr>
 <td>${i+1}</td>
 <td>${d.nama}</td>
 <td>${d.program}</td>
 <td>${d.hp}</td>
+<td><a href="https://wa.me/62${d.hp}">Chat</a></td>
 </tr>`;
 });
 data.innerHTML=html;
 });
-}
-
-/* DOWNLOAD FIX */
-function downloadExcel(){
-window.open(scriptURL + "?export=excel");
 }
 
 /* SOSMED */
@@ -395,10 +376,16 @@ function toggleSosmed(){
 menuSosmed.classList.toggle("show");
 }
 
+/* NOTIF */
+function tampilNotifikasi(){
+notifikasi.style.display="block";
+setTimeout(()=>{notifikasi.style.display="none";},3000);
+}
+
 </script>
 
 <footer class="footer">
-<p>© 2026 GRIYA INSAN MADANI COURSE</p>
+<p>© 2026 GIMC</p>
 </footer>
 
 </body>
