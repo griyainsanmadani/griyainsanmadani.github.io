@@ -430,53 +430,29 @@ margin-top:40px;
 
 <script>
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbzO0bNzBsrMUpcV4krhty_awua1RDMfcOWAyYC7IFE4CiCodqYYwFp3bI-C6YVZcT27/exec";
-
 /* ================= DAFTAR ================= */
-/* SIMPAN */
 function simpan(){
 
-let data={
-nama:nama.value,
-tempat:tempat.value,
-tanggal:tanggal.value,
-alamat:alamat.value,
-hp:hp.value,
-program:program.value
-};
+var nama=document.getElementById("nama").value;
+var tempat=document.getElementById("tempat").value;
+var tanggal=document.getElementById("tanggal").value;
+var alamat=document.getElementById("alamat").value;
+var hp=document.getElementById("hp").value;
+var program=document.getElementById("programKursus").value;
 
-fetch(scriptURL,{
-method:"POST",
-body:JSON.stringify(data)
-})
-.then(()=>{
-notif.style.display="block";
-setTimeout(()=>notif.style.display="none",3000);
+var nomorAdmin="6281266277447";
 
-/* kirim WA */
-let pesan="Pendaftaran Baru:%0A"+data.nama;
-window.open("https://wa.me/6281266277447?text="+pesan);
-
-})
-.catch(()=>alert("Error"));
-}
-
-/* ================= KIRIM KE WHATSAPP ================= */
-
-var pesan =
+var pesan=
 "FORM PENDAFTARAN GIMC%0A%0A"+
-"Nama : " + nama + "%0A"+
-"Tempat Lahir : " + tempat + "%0A"+
-"Tanggal Lahir : " + tanggal + "%0A"+
-"Alamat : " + alamat + "%0A"+
-"No HP : " + hp + "%0A"+
-"Program : " + program + "%0A%0A"+
+"Nama : "+nama+"%0A"+
+"Tempat Lahir : "+tempat+"%0A"+
+"Tanggal Lahir : "+tanggal+"%0A"+
+"Alamat : "+alamat+"%0A"+
+"No HP : "+hp+"%0A"+
+"Program : "+program+"%0A%0A"+
 "Mohon kirim Pas foto Latar Belakang merah setelah pesan ini";
 
-window.open(
-"https://wa.me/" + nomorAdmin + "?text=" + pesan,
-"_blank"
-);
+window.open("https://wa.me/"+nomorAdmin+"?text="+pesan,"_blank");
 
 }
 
@@ -492,38 +468,21 @@ alert("Login salah");
 
 /* LOAD */
 function loadData(){
-
 fetch(scriptURL)
-.then(response => response.json())
-.then(result => {
-
-let html = "";
-
-result.forEach((d,i)=>{
-
-html += `
-<tr>
+.then(res=>res.json())
+.then(data=>{
+let html="";
+data.forEach((d,i)=>{
+html+=`<tr>
 <td>${i+1}</td>
 <td>${d.nama}</td>
 <td>${d.program}</td>
 <td>${d.hp}</td>
-<td>
-<a href="https://wa.me/62${d.hp}" target="_blank">
-Chat
-</a>
-</td>
-</tr>
-`;
-
+<td><a href="https://wa.me/62${d.hp}">Chat</a></td>
+</tr>`;
 });
-
-document.getElementById("data").innerHTML = html;
-
-})
-.catch(error=>{
-console.log("Gagal load data:", error);
+data.innerHTML=html;
 });
-
 }
 
 /* SOSMED */
