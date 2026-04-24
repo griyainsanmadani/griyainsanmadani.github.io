@@ -31,6 +31,84 @@ color:white;
 padding:20px;
 }
 
+/* Judul bergerak super premium */
+
+.header h1{
+font-size:32px;
+font-weight:800;
+letter-spacing:1px;
+animation:
+slideText 2s ease,
+glowText 2.5s ease-in-out infinite;
+transition:0.4s;
+}
+
+.header h1:hover{
+transform:scale(1.03);
+}
+
+.header p{
+font-size:16px;
+font-weight:500;
+animation:
+fadeText 2s ease,
+shineText 3s linear infinite;
+}
+
+/* Muncul dari bawah */
+@keyframes slideText{
+0%{
+opacity:0;
+transform:translateY(40px);
+}
+100%{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Glow elegan */
+@keyframes glowText{
+0%{
+text-shadow:
+0 0 5px rgba(255,255,255,0.2);
+}
+50%{
+text-shadow:
+0 0 15px rgba(255,255,255,0.7),
+0 0 30px rgba(255,215,0,0.4);
+}
+100%{
+text-shadow:
+0 0 5px rgba(255,255,255,0.2);
+}
+}
+
+/* Subtitle fade */
+@keyframes fadeText{
+0%{
+opacity:0;
+transform:translateY(20px);
+}
+100%{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Efek kilau */
+@keyframes shineText{
+0%{
+opacity:0.8;
+}
+50%{
+opacity:1;
+}
+100%{
+opacity:0.8;
+}
+}
+
 .logo{
 width:90px;
 border-radius:50%;
