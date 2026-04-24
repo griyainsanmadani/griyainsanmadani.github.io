@@ -454,6 +454,31 @@ padding:20px;
 margin-top:40px;
 }
 
+/* HERO BANNER */
+.hero-banner img{
+width:100%;
+display:block;
+border-radius:0;
+box-shadow:0 5px 20px rgba(0,0,0,0.15);
+}
+
+/* PROMO BANNER */
+.promo-banner{
+padding:30px 20px;
+background:#f8f9fa;
+}
+
+.promo-banner img{
+width:100%;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+transition:0.4s;
+}
+
+.promo-banner img:hover{
+transform:scale(1.02);
+}
+
 </style>
 </head>
 
@@ -476,6 +501,16 @@ margin-top:40px;
 <a href="#daftar">Daftar</a>
 <a href="#admin">Admin</a>
 </nav>
+
+<section class="hero-banner">
+    <img src="hero-banner.png" alt="Banner GIMC Utama">
+</section>
+
+<section class="promo-banner">
+    <div class="container">
+        <img src="banner1.png" alt="Banner Promo Kursus">
+    </div>
+</section>
 
 <!-- PROGRAM -->
 <section id="program">
